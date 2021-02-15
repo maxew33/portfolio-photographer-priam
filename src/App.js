@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment} from 'react'
+import './App.css'
+import bruit from './img/bruit.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  render() {
+    return (
+      <Fragment>
+        {/* <div className = "mouchetage">
+          <img src={bruit} alt="" />
+        </div> */}
+        <div className = "main-container">
+          <div className = "header">
+            <div className = "burger-container">
+              <div className = "burger"></div>
+              <div className = "burger"></div>
+              <div className = "burger"></div>
+            </div>
+            <h1>
+              Benedict Priam
+            </h1>
+            <div className = "social">
+              <a href="#" className = "social__icon social__icon-flickr">
+                <FontAwesomeIcon icon={faCamera} />
+              </a>
+              <a href="#" className = "social__icon social__icon-instagram">
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
+            </div>
+          </div>
+        </div>
+          
+      </Fragment>
+    );
+  }
 }
 
-export default App;
+export default App
