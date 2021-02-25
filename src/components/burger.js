@@ -1,4 +1,6 @@
 import React from 'react'
+import '../style/burger.css'
+import Menu from './menu'
 
 let menu = 'closed'
 
@@ -36,13 +38,7 @@ const Burger = () => {
                 <div className = "burger"></div>
                 <div className = "burger"></div>
             </div>
-            <div className="menu-rubrique">
-                contact
-            </div>
-            <div className="menu-rubrique">
-                &Agrave; propos
-            </div>
-
+            <Menu />
         </div>
     )
 }

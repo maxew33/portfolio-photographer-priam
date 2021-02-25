@@ -1,0 +1,117 @@
+.show__container{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.show__pictures{
+    height: 90%;
+    width: 25%;
+    cursor: pointer;
+    font-size: 5rem;
+    object-fit: contain;
+}
+  
+.show__navigation{
+    display: flex;
+    width: 8rem;
+    height: 1rem;
+    align-items: center;
+    justify-content: space-evenly;
+    margin : 0 2vw;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    /* border: 1px solid turquoise; */
+}
+  
+.show__navigation-arrow{
+    position: relative;
+    height: 2px;
+    width: 2.5vw;
+    border-radius: 5px;
+    background: whitesmoke;
+    transition: .5s all ease-in-out;
+}
+  
+.show__navigation-left::before{
+    content: "prev";
+    font-size: 1rem;
+    transform: translateX(0);
+    transition: all .5s ease-in-out;
+}
+  
+.show__navigation:hover .show__navigation-arrow-left{
+    transform: translateX(-4rem);
+}
+  
+.show__navigation-left:hover::before{
+    transform: translateX(4rem);
+}
+  
+.show__navigation-right::after{
+    content: "next";
+    font-size: 1rem;
+    transform: translateX(0);
+    transition: all .5s ease-in-out;
+}
+  
+.show__navigation:hover .show__navigation-arrow-right{
+    transform: translateX(4rem);
+}
+  
+.show__navigation-right:hover::after{
+    transform: translateX(-4rem);
+}
+  
+.show__navigation-arrow-pointe{
+    width: 1vw;
+    height: 2px;
+    border-radius: 1px;
+    background: whitesmoke;
+    transition: all .5s ease-in-out;
+}
+  
+.show__navigation-arrow-pointe-left
+{
+    position: absolute;
+    left: 0;
+    transform-origin: left;
+}
+  
+.show__navigation-arrow-pointe-right
+{
+    position: absolute;
+    right: 0;
+    transform-origin: right;
+}
+  
+.show__navigation:hover .show__navigation-arrow-pointe-right:nth-child(1),
+.show__navigation:hover .show__navigation-arrow-pointe-left:nth-child(1)
+{
+    transform: rotate(45deg);
+}
+  
+.show__navigation:hover .show__navigation-arrow-pointe-right:nth-child(2),
+.show__navigation:hover .show__navigation-arrow-pointe-left:nth-child(2)
+{
+    transform: rotate(-45deg);
+}
+
+.disappear{
+    opacity: 0;
+}
+  
+.titre{
+    position: absolute;
+    bottom: 5%;
+    font-size: 5rem;
+    text-align: center;
+    transition: all .5s ease-in-out;
+}
+.titreToTop{
+    transform: translateY(-70vh); 
+    font-size : 7.5rem;
+    z-index: -1;
+}

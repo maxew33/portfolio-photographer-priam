@@ -1,0 +1,37 @@
+.social{
+    position: absolute;
+    top: 4vh;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    padding-left: 4rem;
+    font-size: 3rem;
+  }
+  
+  .social__icon::before{
+    transition: all .5s ease-in-out;
+    font-size: 1rem;
+    position: absolute;
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  
+  .social__icon-flickr::before{
+    content: "flickr";
+  }
+  
+  .social__icon-instagram::before{
+    content: "instagram";
+  }
+  
+  .social__icon-twitter::before{
+    content: "twitter";
+  }
+  
+  .social__icon:hover::before{
+    opacity: 1;
+    transform: translate(3.15rem, 1.5rem);
+  }
