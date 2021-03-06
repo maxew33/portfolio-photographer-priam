@@ -1,19 +1,84 @@
 .show__container{
-    height: 70%;
+    height: 100%;
     width: 100%;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 20;
   }
 
 .show__pictures{
-    height: 90%;
-    width: 25%;
+    background: whitesmoke;
+    border: 1px solid black;
+    height: 70vh;
+    width: 57.5vh;
     cursor: pointer;
-    font-size: 5rem;
-    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
-  
+.show__pictures-disappear{
+    animation: .5s ease-in-out forwards vanish;
+}
+@keyframes vanish{
+    0%{
+        background: none;
+        border: none;
+    }
+    100%{
+        background: none;
+        border: none;
+        position: fixed;
+        overflow-y: scroll;
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+    }
+}
+
+.show__pictures-img{
+    display: block;
+    margin-top: 1.5vh;
+    margin-left: auto;
+    margin-right: auto;
+    height: 55vh;
+    width: 55vh;
+    object-fit: cover;
+    transition: all .5s ease-in-out;
+}
+.show__pictures-img-shown{
+    position: absolute;
+    width: 35vw;
+    height: auto;
+    transform: translateY(20%);
+}
+
+.show__pictures-img-main{
+    position: absolute;
+    width: 35vw;
+    height: auto;
+}
+
+.show__pictures-img-left{
+    position: absolute;
+    left: 5vw;
+    bottom: 0;
+    height: auto;
+    width: 25vw;
+    transition: all .5s linear;
+}
+
+.show__pictures-img-right{
+    position: absolute;
+    right: 5vw;
+    bottom: -100%;
+    height: auto;
+    width: 30vw;
+    transition: all .5s ease-in-out;
+}
+
 .show__navigation{
     display: flex;
     width: 8rem;
@@ -23,7 +88,6 @@
     margin : 0 2vw;
     cursor: pointer;
     transition: all .5s ease-in-out;
-    /* border: 1px solid turquoise; */
 }
   
 .show__navigation-arrow{
@@ -104,14 +168,16 @@
 }
   
 .titre{
-    position: absolute;
-    bottom: 5%;
+    position: fixed;
+    bottom: 15vh;
     font-size: 5rem;
     text-align: center;
     transition: all .5s ease-in-out;
+    color: black;
+    font-family: 'Dancing Script', cursive;
 }
 .titreToTop{
-    transform: translateY(-70vh); 
-    font-size : 7.5rem;
-    z-index: -1;
+    transform: translateY(-65vh); 
+    font-size : 6rem;
+    color: white;
 }

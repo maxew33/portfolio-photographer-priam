@@ -1,6 +1,6 @@
 import React, { Component, Fragment} from 'react'
 import './App.css'
-import Show from './components/show'
+import Carousel from './components/carousel'
 import Header from './components/header'
 
 class App extends Component{
@@ -9,7 +9,7 @@ class App extends Component{
       <Fragment>
         <div className = "main-container">
           <Header />
-          <Show />
+          <Carousel />
         </div>     
       </Fragment>
     );

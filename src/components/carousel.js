@@ -1,57 +1,19 @@
 import React, {Component} from 'react'
-import '../style/show.css'
+import {gallery} from './gallery'
+import {showGallery} from './showGallery'
 
-const galeries = [
-    {id: 1,
-    src: 'https://cdn.pixabay.com/photo/2018/04/09/15/09/play-3304309_960_720.jpg',
-    name: 'Musique',
-    color: 'rgb(29, 68, 84)'
-    },
-    {id: 2,
-    src: 'https://cdn.pixabay.com/photo/2015/07/10/17/54/water-839886_960_720.jpg',
-    name: 'Océan',
-    color: 'rgb(207, 216, 214)'
-    },
-    {id: 3,
-    src: 'https://cdn.pixabay.com/photo/2014/12/15/17/16/night-sky-569319_960_720.jpg',
-    name: 'De nuit',
-    color: 'rgb(14, 34, 78)'
-    }
-]
+import '../style/carousel.css'
 
-const galerie = {
-    id: 1,
-    src: 'https://cdn.pixabay.com/photo/2018/04/09/15/09/play-3304309_960_720.jpg',
-    name: 'Musique',
-    color: 'rgb(29, 68, 84)'
-}
+const galeries = gallery
 
-const handleClickPhoto = () => {
-    console.log('photo')
-    const titre = document.querySelector('.titre'),
-    name = document.querySelector('.name'),
-    showNavigation = document.getElementsByClassName('show__navigation')
-
-    titre.classList.add('titreToTop')
-    name.classList.add('nameToTop')
-    for ( const element of showNavigation){
-        element.classList.add('disappear')
-    }
-}
-
-const handleLoad = () => {
-    console.log('loaded')
-    const corps = document.getElementsByTagName('body')
-    console.log(corps)
-    document.body.style.backgroundColor = 'red'
-    
-}
+const galerie = galeries[0]
 
 console.log(galerie.src)
 
-let idGalerie = 0
+let idGalerie = 0,
+galleryShown = false
 
-class Show extends Component {
+class Carousel extends Component {
 
     state = {
         galerie
@@ -67,11 +29,20 @@ class Show extends Component {
         galerie.name = galeries[idGalerie].name
         galerie.src = galeries[idGalerie].src
         galerie.color = galeries[idGalerie].color
+        galerie.id = galeries[idGalerie].id
+        galerie.img = galeries[idGalerie].img
         this.setState({ galerie })        
     }
 
     handleLoad = (color) => {
         document.body.style.backgroundColor = color
+    }
+
+    handleClickPhoto = (galerie) => {
+        if(!galleryShown){
+            galleryShown = true
+            showGallery(galerie)
+        }
     }
 
     render(){
@@ -86,13 +57,15 @@ class Show extends Component {
                         <div className="show__navigation-arrow-pointe show__navigation-arrow-pointe-left"></div>
                     </div>
                 </div>
-                    <img 
-                    className="show__pictures" 
-                    onClick={ handleClickPhoto } 
-                    src={galerie.src} 
-                    alt={galerie.name}
-                    onLoad= { () => this.handleLoad(galerie.color) }
-                    />
+                    <div className="show__pictures" 
+                    onClick={ () => this.handleClickPhoto(galerie) }
+                    onLoad= { () => this.handleLoad(galerie.color) }>
+                        <img
+                        className="show__pictures-img"                     
+                        src={galerie.img[0].src} 
+                        alt={galerie.name}
+                        />
+                    </div>
                 <div className="show__navigation show__navigation-right" 
                     onClick = { () => this.handleClick(1) }>
                     <div className="show__navigation-arrow show__navigation-arrow-right">
@@ -108,7 +81,4 @@ class Show extends Component {
     }
 }
 
-
-
-
-export default Show
+export default Carousel

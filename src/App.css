@@ -12,10 +12,15 @@
   text-decoration: none;
   color: whitesmoke;
   font-family: 'Montserrat Alternates', sans-serif;
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+::-webkit-scrollbar { 
+  display: none; /* Chrome Safari */
 }
 
 body {
-  background: #923131;
   transition: all .5s ease-in-out;
 }
 
@@ -23,6 +28,10 @@ body {
   position: absolute;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 
 /* --- HEADER --- */
@@ -32,6 +41,8 @@ body {
   align-items: center;
   width: 100%;
   height: 15%;
+  position: fixed;
+  z-index: 30;
 }
 
 h1 {
@@ -44,5 +55,5 @@ h1 {
 
 .nameToTop{
   transform: translateY(-2.5vh);
-  font-size: 4rem;
+  font-size: 2.5rem;
 }
