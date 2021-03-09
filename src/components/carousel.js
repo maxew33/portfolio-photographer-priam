@@ -3,6 +3,7 @@ import {gallery} from './gallery'
 import {showGallery} from './showGallery'
 
 import '../style/carousel.css'
+import NavigationArrow from './navigationArrow'
 
 const galeries = gallery
 
@@ -24,7 +25,7 @@ class Carousel extends Component {
 
         idGalerie += value
         if(idGalerie < 0){idGalerie = galeries.length - 1}
-        if(idGalerie === galeries.length){idGalerie = 0}
+        if(idGalerie === galeries.length){ idGalerie = 0 }
         
         galerie.name = galeries[idGalerie].name
         galerie.src = galeries[idGalerie].src
@@ -50,32 +51,33 @@ class Carousel extends Component {
 
         return(
             <div className="show__container">
-                <div className="show__navigation show__navigation-left" 
-                    onClick = { () => this.handleClick(-1) }>
-                    <div className="show__navigation-arrow show__navigation-arrow-left">
-                        <div className="show__navigation-arrow-pointe show__navigation-arrow-pointe-left"></div>
-                        <div className="show__navigation-arrow-pointe show__navigation-arrow-pointe-left"></div>
-                    </div>
-                </div>
-                    <div className="show__pictures" 
-                    onClick={ () => this.handleClickPhoto(galerie) }
-                    onLoad= { () => this.handleLoad(galerie.color) }>
-                        <img
-                        className="show__pictures-img"                     
-                        src={galerie.img[0].src} 
-                        alt={galerie.name}
-                        />
-                    </div>
-                <div className="show__navigation show__navigation-right" 
-                    onClick = { () => this.handleClick(1) }>
-                    <div className="show__navigation-arrow show__navigation-arrow-right">
-                        <div className="show__navigation-arrow-pointe show__navigation-arrow-pointe-right"></div>
-                        <div className="show__navigation-arrow-pointe show__navigation-arrow-pointe-right"></div>
-                    </div>
-                </div>
+
+                        <div className="show__pictures-column show__pictures-column-left">
+                            <NavigationArrow 
+                            direction='left' 
+                            chgt = { () => this.handleClick(-1)}/>
+                        </div>
+
+                        <div className="show__pictures-column show__pictures-column-center">
+                                <img
+                                    className="show__pictures-img"
+                                    src={galerie.img[0].src} 
+                                    alt={galerie.name}
+                                    onClick={ () => this.handleClickPhoto(galerie) }
+                                    onLoad= { () => this.handleLoad(galerie.color) }
+                                />
+                        </div>
+
+                        <div className="show__pictures-column show__pictures-column-right">
+                            <NavigationArrow 
+                            direction='right' 
+                            chgt = { () => this.handleClick(1)}/>
+                        </div>
+
                 <h2 className="titre">
                     {galerie.name}
                 </h2>
+                
             </div>
         )
     }

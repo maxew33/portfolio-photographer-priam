@@ -6,58 +6,58 @@ export const gallery = [
         {id: 11,
             src: 'https://cdn.pixabay.com/photo/2018/04/09/15/09/play-3304309_960_720.jpg',
             name: 'Musique',
-            date: 'jj/mm/yyyy',
-            lieu: 'xxx',
-            description: 'blablabla'
+            date: '09/03/2021',
+            lieu: 'Devant mon écran',
+            description: 'Première image de la galerie musique'
         },
         {id: 12,
-            src: 'https://cdn.pixabay.com/photo/2015/07/10/17/54/water-839886_960_720.jpg',
-            name: 'Océan',
-            date: 'jj/mm/yyyy',
-            lieu: 'xxx',
-            description: 'blablabla'
+            src: 'https://cdn.pixabay.com/photo/2016/09/08/21/09/piano-1655558_960_720.jpg',
+            name: 'Piano',
+            date: '01/01/1911',
+            lieu: 'salon',
+            description: 'zoom sur les touches'
         },
         {id: 13,
-            src: 'https://cdn.pixabay.com/photo/2014/12/15/17/16/night-sky-569319_960_720.jpg',
-            name: 'De nuit',
-            date: 'jj/mm/yyyy',
-            lieu: 'xxx',
-            description: 'blablabla'
+            src: 'https://cdn.pixabay.com/photo/2015/05/07/11/02/guitar-756326_960_720.jpg',
+            name: 'Guitar',
+            date: '28/12/1978',
+            lieu: 'Lisieux',
+            description: 'HB Max'
         },
         {id: 14,
-            src: 'https://cdn.pixabay.com/photo/2020/10/03/07/41/leaves-5622832_960_720.jpg',
-            name: 'Feuillage',
-            date: 'jj/mm/yyyy',
-            lieu: 'xxx',
-            description: 'blablabla'
+            src: 'https://cdn.pixabay.com/photo/2014/05/03/01/02/stage-336695_960_720.jpg',
+            name: 'concert',
+            date: '29/03/1981',
+            lieu: 'Jonzac',
+            description: 'HB Gladys'
         },
         {id: 15,
-            src: 'https://cdn.pixabay.com/photo/2018/04/09/15/09/play-3304309_960_720.jpg',
-            name: 'Musique',
-            date: 'jj/mm/yyyy',
-            lieu: 'xxx',
-            description: 'blablabla'
+            src: 'https://cdn.pixabay.com/photo/2016/03/28/09/36/music-1285165_960_720.jpg',
+            name: 'cassette',
+            date: '10/10/1993',
+            lieu: 'au collège',
+            description: 'tu te souviens du bic'
         },
         {id: 16,
-            src: 'https://cdn.pixabay.com/photo/2015/07/10/17/54/water-839886_960_720.jpg',
-            name: 'Océan',
-            date: 'jj/mm/yyyy',
-            lieu: 'xxx',
-            description: 'blablabla'
+            src: 'https://cdn.pixabay.com/photo/2015/01/20/13/13/ipad-605439_960_720.jpg',
+            name: 'ipad',
+            date: '14/04/2015',
+            lieu: 'Bordeaux',
+            description: 'HB Antoine '
         },
         {id: 17,
-            src: 'https://cdn.pixabay.com/photo/2014/12/15/17/16/night-sky-569319_960_720.jpg',
-            name: 'De nuit',
-            date: 'jj/mm/yyyy',
-            lieu: 'xxx',
-            description: 'blablabla'
+            src: 'https://cdn.pixabay.com/photo/2013/05/01/21/46/tango-108483_960_720.jpg',
+            name: 'Tango',
+            date: '28/06/1915',
+            lieu: 'Buenos Aires',
+            description: 'Caliente'
         },
         {id: 18,
-            src: 'https://cdn.pixabay.com/photo/2020/10/03/07/41/leaves-5622832_960_720.jpg',
-            name: 'Feuillage',
-            date: 'jj/mm/yyyy',
-            lieu: 'xxx',
-            description: 'blablabla'
+            src: 'https://cdn.pixabay.com/photo/2016/08/24/20/39/violin-1617972_960_720.jpg',
+            name: 'Petite rouquine',
+            date: '29/07/2017',
+            lieu: 'Bordeaux',
+            description: 'HB Albin'
         }
     ]
     },
@@ -68,9 +68,9 @@ export const gallery = [
         {id: 21,
             src: 'https://cdn.pixabay.com/photo/2015/07/10/17/54/water-839886_960_720.jpg',
             name: 'Océan',
-            date: 'jj/mm/yyyy',
-            lieu: 'xxx',
-            description: 'blablabla'
+            date: '09/03/2021',
+            lieu: 'devant mon écran',
+            description: 'première image de la galerie océan'
         },
         {id: 22,            
             src: 'https://cdn.pixabay.com/photo/2018/04/09/15/09/play-3304309_960_720.jpg',

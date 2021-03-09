@@ -1,0 +1,82 @@
+.navigation{
+    display: flex;
+    width: 8rem;
+    height: 1rem;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+  
+.navigation-arrow{
+    position: relative;
+    height: 2px;
+    width: 2.5vw;
+    border-radius: 5px;
+    background: whitesmoke;
+    transition: .5s all ease-in-out;
+}
+  
+.navigation-left::before{
+    content: "prec";
+    font-size: 1rem;
+    transform: translateX(0);
+    transition: all .5s ease-in-out;
+}
+  
+.navigation:hover .navigation-arrow-left{
+    transform: translateX(-4rem);
+}
+  
+.navigation-left:hover::before{
+    transform: translateX(4rem);
+}
+  
+.navigation-right::after{
+    content: "suiv";
+    font-size: 1rem;
+    transform: translateX(0);
+    transition: all .5s ease-in-out;
+}
+  
+.navigation:hover .navigation-arrow-right{
+    transform: translateX(4rem);
+}
+  
+.navigation-right:hover::after{
+    transform: translateX(-4rem);
+}
+  
+.navigation-arrow-pointe{
+    width: 1vw;
+    height: 2px;
+    border-radius: 1px;
+    background: whitesmoke;
+    transition: all .5s ease-in-out;
+}
+  
+.navigation-arrow-pointe-left
+{
+    position: absolute;
+    left: 0;
+    transform-origin: left;
+}
+  
+.navigation-arrow-pointe-right
+{
+    position: absolute;
+    right: 0;
+    transform-origin: right;
+}
+  
+.navigation:hover .navigation-arrow-pointe-right:nth-child(1),
+.navigation:hover .navigation-arrow-pointe-left:nth-child(1)
+{
+    transform: rotate(45deg);
+}
+  
+.navigation:hover .navigation-arrow-pointe-right:nth-child(2),
+.navigation:hover .navigation-arrow-pointe-left:nth-child(2)
+{
+    transform: rotate(-45deg);
+}
