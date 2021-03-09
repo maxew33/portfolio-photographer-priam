@@ -61,6 +61,8 @@ class Carousel extends Component {
                         <div className="show__pictures-column show__pictures-column-center">
                                 <img
                                     className="show__pictures-img"
+                                    data-follow='true'
+                                    data-column='center'
                                     src={galerie.img[0].src} 
                                     alt={galerie.name}
                                     onClick={ () => this.handleClickPhoto(galerie) }

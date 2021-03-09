@@ -10,16 +10,13 @@ export const showGallery = (galerie) => {
     rightPictureContainer = document.querySelector('.show__pictures-column-right'),
     backToTop = document.querySelector('.backToTop')
 
-    mainPicture.classList.add('show__pictures-img-shown')
-    
-    mainPicture.dataset.follow = true
-    mainPicture.dataset.pos = 'center'
+    mainPicture.classList.add('show__pictures-img-shown')    
     mainPicture.classList.add('step2')
 
     backToTop.classList.add('backToTop-apparition')
 
-    rightPictureContainer.setAttribute('style', 'position: absolute; top: 70vh;')
-    leftPictureContainer.setAttribute('style', 'position: absolute; top: 70vh;')
+    rightPictureContainer.setAttribute('style', 'position: absolute; top: 70vh; align-items: center;')
+    leftPictureContainer.setAttribute('style', 'position: absolute; top: 70vh; align-items: center;')
     centerPictureContainer.setAttribute('style', 'position: absolute; top: 0;')
 
     let imageRank = 2
@@ -33,24 +30,10 @@ export const showGallery = (galerie) => {
     navigationRight.style.transform = 'translateX(75vh)'
 
     setTimeout(function(){ 
-        const pictureLeft = document.createElement('img')
-        pictureLeft.className = "show__pictures-img-shown"
-        pictureLeft.alt = galerie.img[1].name
-        pictureLeft.src = galerie.img[1].src
-        pictureLeft.dataset.follow = true
-        pictureLeft.dataset.pos = 'left'
-        pictureLeft.style.width = 100 + (Math.random()-0.5)*20 + '%'
-        leftPictureContainer.appendChild(pictureLeft)
-        pictureLeft.addEventListener('click', () => {console.log('click picture left')})
 
-        const pictureRight = document.createElement('img')
-        pictureRight.className = "show__pictures-img-shown"
-        pictureRight.src = galerie.img[2].src
-        pictureRight.alt = galerie.img[2].name
-        pictureRight.dataset.follow = true
-        pictureRight.dataset.pos = 'right'
-        pictureRight.style.width = 100 + (Math.random()-0.5)*20 + '%'
-        rightPictureContainer.appendChild(pictureRight)
+        showPictures('left', 1)
+        showPictures('right', 2)
+
     }, 500);
 
     container.addEventListener('scroll', (e) => {
@@ -58,36 +41,59 @@ export const showGallery = (galerie) => {
 
         for(const followed of picturesFollowed){
             const bottomPos = followed.getBoundingClientRect().bottom
-            console.log(followed.alt + ' a un bottom de :' + bottomPos)
+            let rank = 0
 
             if (window.innerHeight >= bottomPos){
                 followed.dataset.follow = false
-                imageRank++
+                const place = followed.dataset.column
+                if(place === 'center'){
+                    mainImageRank++
+                    if(mainImageRank >= galerie.img.length){mainImageRank = 0}
+                    rank = mainImageRank
+                }
+                else{
+                    imageRank++
+                    if(imageRank >= galerie.img.length){imageRank = 0}
+                    rank = imageRank
+                }
+                
                 if(imageRank >= galerie.img.length){imageRank = 0}
-                showNewPicture(followed, imageRank)
+                showPictures(place, rank)
                 }
             }
-        
-        console.log('wheel')
+
+        const fastPictures = document.querySelectorAll('img[data-parallax = true]')
+        for(const fast of fastPictures){
+            fast.style.transform = 'translateY( ' + 0.5 * centerPictureContainer.getBoundingClientRect().top + 'px)'
+        }
     })
 
-    const showNewPicture = (elt, rank) =>{
-        console.log('new picture à ' + elt +' et numéro :' + rank)
+    const showPictures = (place, rank) =>{
 
         const picture = document.createElement('img')
         picture.className = "show__pictures-img-shown"
         picture.src = galerie.img[rank].src
         picture.alt = galerie.img[rank].name
         picture.dataset.follow = true
-        picture.style.width = 100 + (Math.random()-0.5)*20 + '%'
-        elt.insertAdjacentElement('afterend', picture)
-        
+        picture.dataset.column = place
+        picture.style.width = 100 + (Math.random()-1)*10 + '%'
+
+        switch(place){
+            case 'right':
+                picture.dataset.parallax='true'
+                rightPictureContainer.appendChild(picture)
+                picture.style.marginRight = 10 - (Math.random() * 10)+ 'vw'
+                break
+
+            case 'left':
+                picture.dataset.parallax='true'
+                leftPictureContainer.appendChild(picture)
+                picture.style.marginLeft = 10 - (Math.random() * 10)+ 'vw'
+                break
+
+            case 'center':
+                centerPictureContainer.appendChild(picture)
+                break
+        }
     }
 }
-
-/* show__pictures style:
-left : 20%
-center : 50%
-right : 30%
-height : 100%
-text-align: center */
