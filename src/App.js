@@ -12,9 +12,10 @@ class App extends Component{
           <Header />
           <Carousel />
           <BackToTop />
+          <div className="slide-transition"></div>
         </div>     
       </Fragment>
-    );
+    )
   }
 }
 

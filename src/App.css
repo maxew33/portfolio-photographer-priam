@@ -1,8 +1,5 @@
 :root{
   --main-color: #293450;
-  --secondary-color: #f1f2f6;
-  --third-color: #FFD166;
-  --fourth-color: #5b4dcd;
 }
 
 *, ::before, ::after{
@@ -22,6 +19,7 @@
 
 body {
   transition: all .5s ease-in-out;
+  background: var(--main-color);
 }
 
 .main-container {
@@ -56,4 +54,14 @@ h1 {
 .nameToTop{
   transform: translateY(-2.5vh);
   font-size: 2.5rem;
+}
+
+.slide-transition{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  left: -100vw;
+  background:var(--main-color);
+  z-index: 60;
+  transition: all 1s linear;
 }

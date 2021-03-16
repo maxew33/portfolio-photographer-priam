@@ -1,0 +1,52 @@
+.image__detail{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    left: -100vw;
+    z-index: 50;
+    background:var(--main-color);
+    display: flex;
+    align-items: center;
+}
+
+.image__detail-img{
+    width: 60%;
+    height: 90vh;
+    margin-left: 5vh;
+    object-fit: contain;
+
+}
+
+.image__detail-spec-container{
+    height: 90vh;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    padding: 5vh;
+}
+
+.image__detail-spec{
+    margin-bottom: 5vh;
+}
+
+.image__detail-spec-nom-photographe{
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.image__detail-spec-nom-photo{
+    font-size: 1.5rem;
+}
+
+.image__detail-spec-desc{
+    font-style: italic;
+}
+
+.exitcross{
+    position: absolute;
+    cursor: pointer;
+    top: 4vh;
+    right: 4rem;
+    font-size: 3rem;
+}

@@ -1,3 +1,5 @@
+import {ImgDetail} from './imgDetail'
+
 export const showGallery = (galerie) => {
     const titre = document.querySelector('.titre'),
     name = document.querySelector('.name'),
@@ -12,12 +14,16 @@ export const showGallery = (galerie) => {
 
     mainPicture.classList.add('show__pictures-img-shown')    
     mainPicture.classList.add('step2')
+    mainPicture.addEventListener('click', () => { 
+        console.log('click sur : ' + mainPicture.alt)
+        ImgDetail(galerie.img[0])
+    })
 
     backToTop.classList.add('backToTop-apparition')
 
+    centerPictureContainer.setAttribute('style', 'position: absolute; top: 0;')
     rightPictureContainer.setAttribute('style', 'position: absolute; top: 70vh; align-items: center;')
     leftPictureContainer.setAttribute('style', 'position: absolute; top: 70vh; align-items: center;')
-    centerPictureContainer.setAttribute('style', 'position: absolute; top: 0;')
 
     let imageRank = 2
 
@@ -30,15 +36,16 @@ export const showGallery = (galerie) => {
     navigationRight.style.transform = 'translateX(75vh)'
 
     setTimeout(function(){ 
-
         showPictures('left', 1)
         showPictures('right', 2)
-
     }, 500);
 
-    container.addEventListener('scroll', (e) => {
-        const picturesFollowed = document.querySelectorAll('img[data-follow = true]')
+    //  AJOUTER UN EVENT LISTENER SUR KEY DOWN ET SWIPE
 
+    container.addEventListener('scroll', (e) => {
+
+        //chargement des images au cours du défilement
+        const picturesFollowed = document.querySelectorAll('img[data-follow = true]')
         for(const followed of picturesFollowed){
             const bottomPos = followed.getBoundingClientRect().bottom
             let rank = 0
@@ -55,13 +62,12 @@ export const showGallery = (galerie) => {
                     imageRank++
                     if(imageRank >= galerie.img.length){imageRank = 0}
                     rank = imageRank
-                }
-                
-                if(imageRank >= galerie.img.length){imageRank = 0}
+                }                
                 showPictures(place, rank)
                 }
             }
 
+            //parallax effect j'accèlère le défilement des images des côtés par rapport à celles du centre
         const fastPictures = document.querySelectorAll('img[data-parallax = true]')
         for(const fast of fastPictures){
             fast.style.transform = 'translateY( ' + 0.5 * centerPictureContainer.getBoundingClientRect().top + 'px)'
@@ -77,6 +83,9 @@ export const showGallery = (galerie) => {
         picture.dataset.follow = true
         picture.dataset.column = place
         picture.style.width = 100 + (Math.random()-1)*10 + '%'
+        picture.addEventListener('click', () => { 
+            ImgDetail(galerie.img[rank])
+        })
 
         switch(place){
             case 'right':
@@ -91,7 +100,11 @@ export const showGallery = (galerie) => {
                 picture.style.marginLeft = 10 - (Math.random() * 10)+ 'vw'
                 break
 
-            case 'center':
+            // case 'center':
+            //     centerPictureContainer.appendChild(picture)
+            //     break
+
+            default: 
                 centerPictureContainer.appendChild(picture)
                 break
         }

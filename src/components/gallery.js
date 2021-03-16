@@ -1,3 +1,5 @@
+// creer une deuxième src pour les images en thumbnails
+
 export const gallery = [
     {id: 1,
     name: 'Musique',
@@ -8,56 +10,56 @@ export const gallery = [
             name: 'Musique',
             date: '09/03/2021',
             lieu: 'Devant mon écran',
-            description: 'Première image de la galerie musique'
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum voluptate fugiat iste odio ut. Provident autem optio nobis, voluptas dicta quos ratione natus in placeat. Alias autem molestiae voluptatum similique assumenda recusandae doloribus rerum! Ducimus corporis aliquid quae commodi, culpa quibusdam earum officiis, totam voluptatibus accusantium iure voluptatem laudantium! Dolorum expedita vero dolores? Ut harum delectus, sunt iusto molestiae, eum aliquam eius veritatis dolor ad magni fugiat porro non modi consequatur mollitia, voluptas iste! Accusamus in cum recusandae! Cupiditate tempora blanditiis eligendi necessitatibus consequatur! Eveniet accusamus sequi sed nulla harum voluptates, voluptatem aspernatur consequuntur quas sunt, exercitationem rem maiores vero nesciunt vitae itaque ipsum voluptate odio ipsam labore atque explicabo? Debitis amet ab cupiditate facilis quasi, officia sed dolor commodi nulla ducimus sunt libero natus sequi nihil porro delectus! Consequuntur reprehenderit maxime et quaerat nostrum aut iste ratione veniam voluptatibus corporis, ea alias nulla id, est in eos, sit ipsam beatae exercitationem debitis maiores soluta? Cumque soluta cupiditate nihil. Voluptatem.'
         },
         {id: 12,
             src: 'https://cdn.pixabay.com/photo/2016/09/08/21/09/piano-1655558_960_720.jpg',
             name: 'Piano',
             date: '01/01/1911',
             lieu: 'salon',
-            description: 'zoom sur les touches'
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero nulla repudiandae magni in? Necessitatibus maxime minima officiis unde eos cumque, neque incidunt pariatur quidem et ut, aperiam adipisci quibusdam non dolor quos eum consequatur, cupiditate exercitationem! Asperiores odio minus perspiciatis, sequi commodi, adipisci animi nobis ullam assumenda minima accusamus, fugiat nemo. Enim tenetur repudiandae, dolor ipsum eaque sunt et libero corrupti cupiditate consectetur, aspernatur accusamus numquam corporis aliquam laudantium officia culpa optio dolorum consequuntur quis deserunt tempora pariatur magnam a. Doloremque quia consectetur dignissimos quaerat voluptatibus porro officia sapiente repudiandae nam, veniam nisi? Quasi sit deserunt iste eos laborum nemo odio eius minus, ipsam sed veniam necessitatibus non expedita excepturi fugiat, ipsa saepe nostrum? Ullam adipisci architecto libero sapiente.'
         },
         {id: 13,
             src: 'https://cdn.pixabay.com/photo/2015/05/07/11/02/guitar-756326_960_720.jpg',
             name: 'Guitar',
             date: '28/12/1978',
             lieu: 'Lisieux',
-            description: 'HB Max'
+            description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. In delectus vel voluptatem alias error sint beatae iure praesentium accusamus quam, eius reprehenderit, nihil dolorum placeat dicta, distinctio animi saepe cupiditate unde. Eos debitis eligendi placeat consectetur culpa autem fugit sunt! Provident aperiam quibusdam ea repellendus animi quas molestiae quidem, saepe nihil excepturi, minus minima illum recusandae iusto voluptate vero veritatis id sunt ullam. Ipsa distinctio quas pariatur officia omnis, reiciendis odit exercitationem suscipit necessitatibus quo tenetur quod nisi laudantium illo. Temporibus consequuntur repellendus laboriosam atque deserunt dolore et ipsa, alias voluptatibus, similique dicta eius ducimus illum ratione numquam nostrum sapiente, earum natus porro recusandae quasi modi explicabo. Magni molestias repellendus explicabo numquam eaque atque, natus corrupti quisquam inventore facere odit, in rerum! Voluptate, ducimus ratione!'
         },
         {id: 14,
             src: 'https://cdn.pixabay.com/photo/2014/05/03/01/02/stage-336695_960_720.jpg',
             name: 'concert',
             date: '29/03/1981',
             lieu: 'Jonzac',
-            description: 'HB Gladys'
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit nihil optio temporibus excepturi, blanditiis minus, iure id corrupti incidunt quis labore! Ducimus vitae nihil maxime quis quibusdam quos veniam inventore ea ipsum minima laborum, pariatur, perspiciatis voluptates quam. Corrupti, ea vel. Iure quasi repudiandae officiis sed veniam aut error pariatur, sapiente deleniti, ipsum quae, illo perferendis odit accusantium sequi! Quam commodi reiciendis vitae quidem eaque nesciunt recusandae eveniet et temporibus distinctio tenetur ex consequuntur, inventore dolorum ipsum tempora expedita alias, corporis nobis architecto. Nisi, quos minus! Delectus placeat maiores, repellat porro nulla nemo.'
         },
         {id: 15,
             src: 'https://cdn.pixabay.com/photo/2016/03/28/09/36/music-1285165_960_720.jpg',
             name: 'cassette',
             date: '10/10/1993',
             lieu: 'au collège',
-            description: 'tu te souviens du bic'
+            description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem omnis hic et magnam nam harum illum eveniet quasi expedita exercitationem. Enim ipsum rerum provident dolorem qui obcaecati ab similique blanditiis eos illum? Qui consectetur facere id quos animi neque magni harum laboriosam fugiat aliquam. Corporis dolorum accusantium veniam deserunt fugiat voluptatem quod odio omnis porro, reiciendis inventore minus hic accusamus sed alias iure assumenda!'
         },
         {id: 16,
             src: 'https://cdn.pixabay.com/photo/2015/01/20/13/13/ipad-605439_960_720.jpg',
             name: 'ipad',
             date: '14/04/2015',
             lieu: 'Bordeaux',
-            description: 'HB Antoine '
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ullam quod quibusdam! Exercitationem, voluptas reiciendis quaerat accusantium ipsa rerum, unde error id perspiciatis maxime eveniet. Facilis corporis quibusdam quidem, impedit soluta ab a ratione nihil ipsam repellendus earum assumenda officiis voluptatem cum dolor minus voluptas architecto sit? Eligendi eum culpa vero ratione ipsam tenetur eius magni labore vel consequatur eaque porro sapiente a quos, nostrum explicabo veritatis voluptates doloremque debitis cupiditate consequuntur quisquam nam tempora repellendus. Iure debitis, temporibus sunt aut ea, harum enim possimus non voluptate magnam ratione quod ut accusamus! Porro, facilis incidunt commodi consequatur, iste esse exercitationem fugiat voluptatibus velit suscipit recusandae quisquam quis quas ipsam quae dolorum pariatur quo, minima similique magnam vero iure. Nisi earum labore modi molestias, consequatur omnis a, vitae quae laboriosam repudiandae eos dolorum totam odio eveniet qui, aspernatur distinctio. Minima, minus in natus suscipit quos vel voluptas reiciendis tempora cum, incidunt ut ullam maxime velit? Libero quos praesentium vitae error modi rerum tempora delectus, voluptates in a quidem, asperiores pariatur inventore sequi et quae labore accusantium nostrum sint veritatis culpa. Earum iusto ipsum praesentium itaque!'
         },
         {id: 17,
             src: 'https://cdn.pixabay.com/photo/2013/05/01/21/46/tango-108483_960_720.jpg',
             name: 'Tango',
             date: '28/06/1915',
             lieu: 'Buenos Aires',
-            description: 'Caliente'
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus laboriosam soluta perferendis necessitatibus error consequuntur possimus earum sapiente quasi exercitationem perspiciatis ea illum delectus, asperiores porro nemo velit iste ipsa placeat officiis aperiam laborum corporis! Esse, debitis? Labore illo autem numquam ut fuga culpa iusto assumenda, laborum perferendis aut impedit nobis porro possimus eaque dolorum doloremque sequi earum quidem qui atque quis modi in libero hic. Illum iusto corporis culpa voluptatem quam excepturi, praesentium ipsam vitae optio nemo rem iure sequi esse eligendi ad cumque natus. Dolor.'
         },
         {id: 18,
             src: 'https://cdn.pixabay.com/photo/2016/08/24/20/39/violin-1617972_960_720.jpg',
             name: 'Petite rouquine',
             date: '29/07/2017',
             lieu: 'Bordeaux',
-            description: 'HB Albin'
+            description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et iste ut, delectus corrupti a voluptatum quam, rerum blanditiis sapiente ratione harum, voluptate exercitationem! Laudantium minima dolore provident illo voluptatibus optio eum officiis, architecto necessitatibus! Asperiores quo repellat error eaque suscipit officiis quibusdam vitae id accusantium voluptatum! Consequuntur labore adipisci nulla laboriosam excepturi quisquam porro?'
         }
     ]
     },
