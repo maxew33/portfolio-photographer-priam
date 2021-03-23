@@ -5,6 +5,7 @@ import {showGallery} from './showGallery'
 import '../style/carousel.css'
 import NavigationArrow from './navigationArrow'
 import ImgDetailContainer from './imgDetailContainer'
+import ShowPictures from './showPictures'
 
 const galeries = gallery,
 galerie = galeries[0]
@@ -12,12 +13,13 @@ galerie = galeries[0]
 console.log(galerie.src)
 
 let idGalerie = 0,
-galleryShown = false
+galleryShown = false,
+rank = 0
 
 class Carousel extends Component {
 
     state = {
-        galerie
+        galerie, rank
     }
 
     handleClick = (value) => {
@@ -32,11 +34,14 @@ class Carousel extends Component {
         galerie.color = galeries[idGalerie].color
         galerie.id = galeries[idGalerie].id
         galerie.img = galeries[idGalerie].img
-        this.setState({ galerie })}
+        this.setState({ galerie })
 
-    handleLoad = (color) => {
-        document.documentElement.style.setProperty('--main-color', color)
+        // document.documentElement.style.setProperty('--main-color', galerie.color)
     }
+
+    // handleLoad = (color) => {
+    //     document.documentElement.style.setProperty('--main-color', color)
+    // }
 
     handleClickPhoto = (galerie) => {
         if(!galleryShown){
@@ -45,8 +50,16 @@ class Carousel extends Component {
         }
     }
 
+    // handleUpdateRank = (newRank) => {
+    //     const rank = { ...this.state.rank }
+    //     rank = newRank
+    //     this.setState ({rank})
+    // }
+
     render(){
         const { galerie } = this.state
+
+        document.documentElement.style.setProperty('--main-color', galerie.color)
 
         return(
             <Fragment>
@@ -66,9 +79,14 @@ class Carousel extends Component {
                         src={galerie.img[0].src} 
                         alt={galerie.name}
                         onClick={ () => this.handleClickPhoto(galerie) }
-                        onLoad= { () => this.handleLoad(galerie.color) }
+                        // onLoad= { () => this.handleLoad(galerie.color) }
+                        // updateRank = { (newRank) => this.handleUpdateRank(newRank)}
                     />
                 </div>
+
+                {/* <ShowPictures
+                    galerie={galerie}
+                /> */}
 
                 <div className="show__pictures-column show__pictures-column-right">
                     <NavigationArrow 
@@ -84,7 +102,9 @@ class Carousel extends Component {
 
             {/* <div className="image__detail"></div> */}
             <ImgDetailContainer 
-                nomGalerie = {galerie.name}/>
+                galerie = {galerie}
+                rank = {rank}
+                />
             </Fragment>
         )
     }

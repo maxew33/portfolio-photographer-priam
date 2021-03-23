@@ -1,7 +1,7 @@
 import React, { Component} from 'react'
 import '../style/backToTop.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronCircleUp } from '@fortawesome/free-solid-svg-icons'
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
 class BackToTop extends Component {
 
@@ -15,7 +15,7 @@ class BackToTop extends Component {
         <div className = "backToTop" >
             <div className = "backToTop-icon"
                 onClick = { () => this.handleClick() }>
-                <FontAwesomeIcon icon={faChevronCircleUp} />
+                <FontAwesomeIcon icon={faChevronUp} />
             </div>
         </div>
         )

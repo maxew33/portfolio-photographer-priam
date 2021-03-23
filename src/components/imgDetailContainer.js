@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
 import '../style/imgDetailContainer.css'
-import {gallery} from './gallery'
+import { gallery } from './gallery'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-
-const galeries = gallery,
-galerie = galeries[0]
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 class ImgDetailContainer extends Component{ 
-
-    state = {
-        galerie
-    }
 
     handleClick = () => {
         console.log('click on exit')
@@ -33,10 +26,10 @@ class ImgDetailContainer extends Component{
                     <div className="image__detail-spec image__detail-spec-nom-photographe">
                         Benedict Priam 
                         <br/>
-                        {this.props.nomGalerie}
+                        - {this.props.galerie.name} - 
                     </div>
                     <div className="image__detail-spec image__detail-spec-nom-photo">
-                        Nom de la photo
+                        Nom de la photo : { this.props.galerie.img[this.props.rank].name}
                     </div>
                     <div className="image__detail-spec image__detail-spec-date-et-lieu">
                         Prise le <span className="image__detail-spec-date"> date de la photo</span> à <span className="image__detail-spec-lieu"> date de la photo</span>.
@@ -47,7 +40,7 @@ class ImgDetailContainer extends Component{
                 </div>
                 <div className="exitcross"
                     onClick={ () => this.handleClick() }>
-                    <FontAwesomeIcon icon={faTimesCircle} />
+                    <FontAwesomeIcon icon={faTimes} />
                 </div>
             </div>
         )

@@ -85,6 +85,8 @@ export const showGallery = (galerie) => {
         picture.style.width = 100 + (Math.random()-1)*10 + '%'
         picture.addEventListener('click', () => { 
             ImgDetail(galerie.img[rank])
+            //Modifier le state de carousel en mettant à jour le rank
+
         })
 
         switch(place){
