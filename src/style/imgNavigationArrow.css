@@ -1,0 +1,48 @@
+.imgNavigation{
+    position: absolute;
+    display: flex;
+    width: 2.5vw;
+    height: 1vw;
+    align-items: center;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+
+.imgNavigation-right{
+    right: 0;
+}
+
+.imgNavigation-left{
+    left: 0;
+}
+   
+.imgNavigation-arrow-pointe{
+    position: absolute;
+    width: 2.5vw;
+    height: 2px;
+    border-radius: 1px;
+    background: whitesmoke;
+    transition: all .5s ease-in-out;
+}
+  
+.imgNavigation-arrow-pointe-left{
+    left: 0;
+    transform-origin: left;
+}
+  
+.imgNavigation-arrow-pointe-right{
+    right: 0;
+    transform-origin: right;
+}
+  
+.imgNavigation:hover .imgNavigation-arrow-pointe-right:nth-child(1),
+.imgNavigation:hover .imgNavigation-arrow-pointe-left:nth-child(1)
+{
+    transform: rotate(45deg);
+}
+  
+.imgNavigation:hover .imgNavigation-arrow-pointe-right:nth-child(2),
+.imgNavigation:hover .imgNavigation-arrow-pointe-left:nth-child(2)
+{
+    transform: rotate(-45deg);
+}

@@ -9,12 +9,20 @@
     align-items: center;
 }
 
-.image__detail-img{
+.image__detail-img-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 60%;
     height: 90vh;
     margin-left: 5vh;
-    object-fit: contain;
+}
 
+.image__detail-img{
+    max-height: 100%;
+    max-width: 90%;
+    object-fit: contain;
 }
 
 .image__detail-spec-container{
