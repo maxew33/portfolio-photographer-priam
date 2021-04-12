@@ -7,10 +7,13 @@ import NavigationArrow from './navigationArrow'
 import ImgDetailContainer from './imgDetailContainer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import ShowPictures from './showPictures'
+import ShowPicture from './showPicture'
 
 const galeries = gallery,
-galerie = galeries[0]
+galerie = galeries[0],
+$ = document.querySelector.bind(document),
+$$ = document.querySelectorAll.bind(document)
+
 
 console.log(galerie.src)
 
@@ -19,19 +22,19 @@ galleryShown = false,
 exitAllowed = false
 
 const showGallery = (galerie) => {
-    const titre = document.querySelector('.titre'),
-    name = document.querySelector('.name'),
-    container = document.querySelector('.show__container'),
-    navigationLeft = document.querySelector('.navigation-left'),
-    navigationRight = document.querySelector('.navigation-right'),
-    mainPicture = document.querySelector('.show__pictures-img'),
-    leftPictureContainer = document.querySelector('.show__pictures-column-left'),
-    centerPictureContainer = document.querySelector('.show__pictures-column-center'),
-    rightPictureContainer = document.querySelector('.show__pictures-column-right'),
-    backToTop = document.querySelector('.backToTop')
+    const titre = $('.titre'),
+    name = $('.name'),
+    container = $('.show__container'),
+    navigationLeft = $('.navigation-left'),
+    navigationRight = $('.navigation-right'),
+    mainPicture = $('.show__pictures-img'),
+    leftPictureContainer = $('.show__pictures-column-left'),
+    centerPictureContainer = $('.show__pictures-column-center'),
+    rightPictureContainer = $('.show__pictures-column-right'),
+    backToTop = $('.backToTop')
 
     mainPicture.classList.add('show__pictures-img-shown')    
-    mainPicture.classList.add('step2')
+
 
     backToTop.classList.add('backToTop-apparition')
 
@@ -59,7 +62,7 @@ const showGallery = (galerie) => {
     container.addEventListener('scroll', (e) => {
 
         //chargement des images au cours du défilement
-        const picturesFollowed = document.querySelectorAll('img[data-follow = true]')
+        const picturesFollowed = $$('img[data-follow = true]')
         for(const followed of picturesFollowed){
             const bottomPos = followed.getBoundingClientRect().bottom
             let rank = 0
@@ -82,7 +85,7 @@ const showGallery = (galerie) => {
             }
 
             //parallax effect j'accèlère le défilement des images des côtés par rapport à celles du centre
-        const fastPictures = document.querySelectorAll('img[data-parallax = true]')
+        const fastPictures = $$('img[data-parallax = true]')
         for(const fast of fastPictures){
             fast.style.transform = 'translateY( ' + 0.5 * centerPictureContainer.getBoundingClientRect().top + 'px)'
         }
@@ -134,10 +137,10 @@ const showPicture = (galerie, rank) => {
 
         console.log('click sur : ' + img.name)
         console.log(img)
-        document.querySelector('.slide-transition').style.left = '100vw'
+        $('.slide-transition').style.left = '100vw'
         setTimeout(function(){
-            document.querySelector('.image__detail').style.left = '0'
-            document.querySelector('.exitcross').style.opacity = '1'
+            $('.image__detail').style.left = '0'
+            $('.exitcross').style.opacity = '1'
         }, 500)
 }
 
@@ -145,9 +148,14 @@ class Carousel extends Component {
 
     state = {
         galerie, 
-        rank : 0,
-        clicked : false
+        rank : 3,
+        centerRank : 1,
+        clicked : false,
+        leftCol : [],
+        middleCol : [],
+        rightCol : []
     }
+
 
     handleClickArrow = (value) => {
         const galerie = { ...this.state.galerie }
@@ -173,7 +181,31 @@ class Carousel extends Component {
     handleClickPhoto = (galerie, newRank) => {
         if(!galleryShown){
             galleryShown = true
-            showGallery(galerie, newRank)
+            
+            $('.show__pictures-img').classList.toggle('show__pictures-img-shown')
+            $('.show__pictures-img').classList.toggle('step2')
+
+            $('.backToTop').classList.toggle('backToTop-apparition')
+
+            $('.show__pictures-column-center').setAttribute('style', 'position: absolute; top: 0;')
+            $('.show__pictures-column-right').setAttribute('style', 'position: absolute; top: 70vh; align-items: center;')
+            $('.show__pictures-column-left').setAttribute('style', 'position: absolute; top: 70vh; align-items: center;')
+           
+            $('.titre').classList.toggle('titreToTop')
+            $('.name').classList.toggle('nameToTop')
+            $('.show__container').style.overflowY = 'scroll'
+            $('.navigation-left').style.transform = 'translateX(-75vh)'
+            $('.navigation-right').style.transform = 'translateX(75vh)'
+
+            setTimeout(() =>{
+                this.setState({
+                    leftCol : [...this.state.leftCol, <ShowPicture galerie = {galerie}  position = 'left' rank = '1' clicked = { () => this.handleClickPhoto(galerie, 1)}/>]
+                })
+                this.setState({
+                    rightCol : [...this.state.rightCol, <ShowPicture galerie = {galerie}  position = 'right' rank = '2' clicked = { () => this.handleClickPhoto(galerie, 2)}/>]
+                })
+               console.log('apparition sur les côtés')
+            }, 500);
         }
         else{
             console.log('click, rank : ' + newRank)
@@ -188,14 +220,63 @@ class Carousel extends Component {
     handleClickExit = (rank) => {
         console.log('click on exit : ' + rank)
         if (exitAllowed){
-            document.querySelector('.slide-transition').style.left = '-100vw'
-            document.querySelector('.exitcross').style.opacity = '0'
+            $('.slide-transition').style.left = '-100vw'
+            $('.exitcross').style.opacity = '0'
             setTimeout(() => {
-                document.querySelector('.image__detail').style.left = '-100vw'
+                $('.image__detail').style.left = '-100vw'
                 this.setState({ clicked: !this.state.clicked })
             }, 500)
             exitAllowed = false
         }
+    }
+
+    handleScroll = () => {
+       console.log('scroll de handlescroll')
+               //chargement des images au cours du défilement
+               const picturesFollowed = $$('img[data-follow = true]')
+               const galerie = this.state.galerie
+               for(const followed of picturesFollowed){
+                   const bottomPos = followed.getBoundingClientRect().bottom
+       
+                   if (window.innerHeight >= bottomPos){
+                       followed.dataset.follow = false
+                       const place = followed.dataset.column
+                       if(place === 'center'){
+                           let rank = this.state.centerRank
+                           rank++
+                           if(rank >= galerie.img.length){rank = 0}
+                           this.setState ({centerRank : rank})
+                           this.setState({
+                            middleCol : [...this.state.middleCol, <ShowPicture galerie = {galerie}  position = 'center' rank = {rank} clicked = { () => this.handleClickPhoto(galerie, rank)}/>]
+                         })
+
+                       }
+                       else {
+                        let rank = this.state.rank
+                        rank++
+                        if(rank >= galerie.img.length){rank = 0}
+                        this.setState ({rank : rank})
+
+                           if(place === 'left'){
+                               this.setState({
+                                   leftCol : [...this.state.leftCol, <ShowPicture galerie = {galerie}  position = 'left' rank = {rank} clicked = { () => this.handleClickPhoto(galerie, rank)}/>]
+                                })
+                            }
+                            else if(place === 'right'){
+                                this.setState({
+                                    rightCol : [...this.state.rightCol, <ShowPicture galerie = {galerie}  position = 'right' rank = {rank} clicked = { () => this.handleClickPhoto(galerie, rank)}/>]
+                                })
+                            }             
+                    //    showPictures(place, rank)
+                       }
+                   }
+       
+                   //parallax effect j'accèlère le défilement des images des côtés par rapport à celles du centre
+               const fastPictures = $$('img[data-parallax = true]')
+               for(const fast of fastPictures){
+                   fast.style.transform = 'translateY( ' + 0.5 * $('.show__pictures-column-center').getBoundingClientRect().top + 'px)'
+               }
+            }
     }
 
     // handleUpdateRank = (newRank) => {
@@ -212,13 +293,14 @@ class Carousel extends Component {
         return(
             <Fragment>
             <div className="show__container"
-            // onScroll = { () => this.handleScroll()}
+            onScroll = { () => this.handleScroll()}
             >
 
                 <div className="show__pictures-column show__pictures-column-left">
                     <NavigationArrow 
                         direction='left' 
                         chgt = { () => this.handleClickArrow(-1)}/>
+                    {this.state.leftCol}
                 </div>
 
                 <div className="show__pictures-column show__pictures-column-center">
@@ -228,10 +310,11 @@ class Carousel extends Component {
                         data-column='center'
                         src = {galerie.img[0].src} 
                         alt = {galerie.name}
-                        onClick = { () => this.handleClickPhoto(galerie, rank) }
+                        onClick = { () => this.handleClickPhoto(galerie, 0) }
                         // onLoad = { () => this.handleLoad(galerie.color) }
                         // updateRank = { (newRank) => this.handleUpdateRank(newRank) }
                     />
+                    {this.state.middleCol}
                 </div>
 
                 {/* <ShowPictures
@@ -242,6 +325,7 @@ class Carousel extends Component {
                     <NavigationArrow 
                         direction='right' 
                         chgt = { () => this.handleClickArrow(1)}/>
+                    {this.state.rightCol}
                 </div>
 
                 <h2 className="titre">
