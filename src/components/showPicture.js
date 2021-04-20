@@ -7,9 +7,17 @@ const ShowPicture = ({ galerie, position, rank, clicked }) =>{
     newMargin = '3vw 0 5vw 0',
     widthValue = 100
 
-    if(position === 'right'){newMargin = '3vw ' + newSideMarginValue + 'vw ' + newBottomMarginValue + 'vw 0'}
-    else if(position === 'left'){newMargin = '3vw 0' + newBottomMarginValue + 'vw ' + newSideMarginValue + 'vw'}
-    else if(position === 'center'){widthValue = 90}
+    console.log(galerie.img.length)
+
+    if(position === 'right'){
+        newMargin = '3vw ' + newSideMarginValue + 'vw ' + newBottomMarginValue + 'vw 0'
+    }
+    else if(position === 'left'){
+        newMargin = '3vw 0' + newBottomMarginValue + 'vw ' + newSideMarginValue + 'vw'
+    }
+    else if(position === 'center'){
+        widthValue = 90
+    }
 
     const divStyle = {
         width : widthValue + (Math.random()-1)*10 + '%',

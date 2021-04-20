@@ -26,7 +26,6 @@ const Menu = () => {
                 nomRubrique = {rubrique.nom}
                 click = {rubrique.id}
              />))}
-
         </Fragment>
     )
 }

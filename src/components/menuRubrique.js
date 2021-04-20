@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+
+const $ = document.querySelector.bind(document),
+$$ = document.querySelectorAll.bind(document)
 
 const handleClick = (nom) =>{
     switch (nom){
@@ -20,11 +23,17 @@ const handleClick = (nom) =>{
             break
 
         case 2 :
-            console.log ('contact')
+            $('.slide-transition').style.left = '100vw'
+            console.log('contact')
             break
 
         case 3 :
             console.log('about')
+            $('.slide-transition').style.left = '100vw'
+            setTimeout(function(){
+                $('.about').style.display = 'flex'
+                $('.exitcross').style.opacity = '1'
+            }, 500)
             break
 
         default : 
@@ -34,9 +43,12 @@ const handleClick = (nom) =>{
 
 const MenuRubrique = ({ nomRubrique, click }) =>{
     return(
-        <div className="menu-rubrique" onClick = {() => handleClick(click)}>
-        { nomRubrique }
-        </div>
+        <Fragment>
+            <div className="menu-rubrique" onClick = {() => handleClick(click)}>
+            { nomRubrique }
+            </div>
+        </Fragment>
+
     )
 }
 

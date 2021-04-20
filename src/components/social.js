@@ -1,7 +1,6 @@
 import React from 'react'
 import '../style/social.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import { faInstagram, faTwitter, faFlickr } from '@fortawesome/free-brands-svg-icons'
 
 const Social = () => {

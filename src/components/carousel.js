@@ -8,6 +8,7 @@ import ImgDetailContainer from './imgDetailContainer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import ShowPicture from './showPicture'
+import Social from './social'
 
 const galeries = gallery,
 galerie = galeries[0],
@@ -236,9 +237,12 @@ class Carousel extends Component {
                const picturesFollowed = $$('img[data-follow = true]')
                const galerie = this.state.galerie
                for(const followed of picturesFollowed){
-                   const bottomPos = followed.getBoundingClientRect().bottom
+                   const bottomPos = followed.getBoundingClientRect().bottom - 50
        
                    if (window.innerHeight >= bottomPos){
+
+                        console.log('création')
+
                        followed.dataset.follow = false
                        const place = followed.dataset.column
                        if(place === 'center'){
@@ -344,6 +348,28 @@ class Carousel extends Component {
                 <div className="exitcross"
                     onClick={ () => this.handleClickExit(rank) }>
                     <FontAwesomeIcon icon={faTimes} />
+                </div>
+
+                <div className="contact">
+                </div>
+                <div className="about">
+                    <div className="about-container">
+                        <div className="about-title">
+                            Benedict Priam
+                            <br/>
+                            photographe 
+                        </div>
+                        <div className="about-left">
+                            <img className="portrait"
+                            src="https://live.staticflickr.com/1866/buddyicons/156511039@N02_r.jpg?1535820205#156511039@N02" 
+                            alt="Benedict Priam"/>
+                        </div>
+                        <div className="about-right">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque adipisci omnis quasi debitis provident iure perferendis consequatur tenetur earum, esse, in modi facilis soluta labore iusto. Maiores porro pariatur harum nihil id eius! Vel debitis numquam alias. Ab, rerum laudantium? Quaerat eaque tempora dolor omnis deserunt fugiat libero distinctio quis officiis. Laboriosam ex fugiat perspiciatis consequuntur? Tempora, quisquam ipsum. Vero adipisci id, eligendi beatae consequatur impedit dolore debitis, praesentium sapiente nostrum maxime in temporibus dolor asperiores laudantium minus cupiditate reprehenderit doloribus delectus dolorum eos dolorem atque officia? Esse recusandae nobis, unde eos, impedit, hic accusantium eum magnam animi ullam quidem.
+                        </div>
+                    </div>
+                    
+                    reseaux sociaux et contact
                 </div>
 
             </Fragment>

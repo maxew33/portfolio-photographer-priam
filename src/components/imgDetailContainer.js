@@ -12,7 +12,6 @@ class ImgDetailContainer extends Component{
     }
 
     handleClick = (rank) => {
-        console.log('click on exit : ' + rank)
         document.querySelector('.slide-transition').style.left = '-100vw'
         setTimeout(function(){
             document.querySelector('.image__detail').style.left = '-100vw'
@@ -60,7 +59,7 @@ class ImgDetailContainer extends Component{
                         - {this.props.galerie.name} - 
                     </div>
                     <div className="image__detail-spec image__detail-spec-nom-photo">
-                        Nom de la photo : { this.props.galerie.img[rank].name }
+                        Nom de la photo : { this.props.galerie.img[rank].name } - ( {rank+1} / { this.props.galerie.img.length } )
                     </div>
                     <div className="image__detail-spec image__detail-spec-date-et-lieu">
                         Prise le <span className="image__detail-spec-date"> { this.props.galerie.img[rank].date } </span> à <span className="image__detail-spec-lieu"> { this.props.galerie.img[rank].lieu } </span>.
