@@ -90,12 +90,13 @@
     top: 4vh;
     right: 4rem;
     font-size: 3rem;
+    display: none;
     z-index: 1000;
     opacity: 0;
     transition: all .5s ease-in-out;
 }
 
-.about{
+.rubrique{
     display: none;
     justify-content: center;
     align-items: center;
@@ -107,7 +108,15 @@
     z-index: 30;
 }
 
-.about-container{
+.rubrique-exitcross{
+    position: absolute;
+    cursor: pointer;
+    top: 4vh;
+    right: 4rem;
+    font-size: 3rem;
+}
+
+.rubrique-container{
     width: 60%;
     height: 90%;
     display: grid;
@@ -117,18 +126,42 @@
     border: 2px solid brown;
 }
 
-.about-title{
+.rubrique-title{
     grid-column-start: 1;
     grid-column-end: 2;
     font-size: 4rem;
     font-family: 'Dancing Script', cursive;
 }
 
-.about-left{
+.rubrique-left{
     display: flex;
     justify-content: center;
 }
 
+.rubrique-curvedline-container{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 75%;
+}
+
+.rubrique-curvedline{
+    stroke: whitesmoke;
+    fill: none;
+    stroke-width : 2.5;
+}
+
 .portrait{
     border-radius: 40% 80% 40% 75%;
+}
+
+.contourBen{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.contourBen-lines{
+    fill: none;
+    stroke: whitesmoke;
+    stroke-width:2.5;
 }

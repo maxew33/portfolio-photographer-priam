@@ -23,8 +23,11 @@ const handleClick = (nom) =>{
             break
 
         case 2 :
-            $('.slide-transition').style.left = '100vw'
             console.log('contact')
+            $('.slide-transition').style.left = '100vw'
+            setTimeout(function(){
+                $('.contact').style.display = 'flex'
+            }, 500)
             break
 
         case 3 :
@@ -32,7 +35,6 @@ const handleClick = (nom) =>{
             $('.slide-transition').style.left = '100vw'
             setTimeout(function(){
                 $('.about').style.display = 'flex'
-                $('.exitcross').style.opacity = '1'
             }, 500)
             break
 

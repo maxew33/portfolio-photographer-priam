@@ -1,0 +1,18 @@
+
+    
+input,
+select,
+option,
+textarea{
+    color:black;
+}
+.contactFormLine{
+    width: 40vw;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2vh 0;
+}
+
+#message{
+    width:40vw;
+}
