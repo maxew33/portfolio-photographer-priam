@@ -121,9 +121,6 @@
     height: 90%;
     display: grid;
     grid-template-columns: 2fr 3fr;
-    align-items: center;
-    justify-items: center;
-    border: 2px solid brown;
 }
 
 .rubrique-title{
@@ -135,33 +132,36 @@
 
 .rubrique-left{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-evenly;
+}
+
+.contact-title{
+    text-align: center;
+    font-size: 3rem;
+}
+
+.rubrique-left p{
+    padding: 6px;
 }
 
 .rubrique-curvedline-container{
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 75%;
+    width: 75vw;
+    height: auto;
 }
 
 .rubrique-curvedline{
-    stroke: whitesmoke;
     fill: none;
-    stroke-width : 2.5;
+    stroke: whitesmoke;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    stroke-width : .75;
 }
 
 .portrait{
     border-radius: 40% 80% 40% 75%;
-}
-
-.contourBen{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.contourBen-lines{
-    fill: none;
-    stroke: whitesmoke;
-    stroke-width:2.5;
 }

@@ -1,18 +1,115 @@
-
-    
+  
 input,
 select,
 option,
-textarea{
+textarea,
+label{
     color:black;
 }
-.contactFormLine{
-    width: 40vw;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 2vh 0;
+
+.form-container {   
+    background: whitesmoke;
+    padding: 1.25vh;
+    height: 70vh;
+    width: 57.5vh;
 }
 
-#message{
-    width:40vw;
+.form-input-container{
+    position: relative;
+    height: 56.5vh;    
+    border: 2px solid var(--main-color);
+    background: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
+
+.form-bg{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 50%;
+    width: 50%;
+    background:whitesmoke;
+}
+
+.form-bg g{
+    stroke: var(--main-color);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: .75px;
+    fill: none;
+}
+
+.form-input {
+    position: relative;
+    width: 100%;
+    padding: 0 1vw;
+    height: 1.5rem;
+}
+
+.form-input input,
+.form-input textarea,
+.form-input select{
+    padding: 5px;
+    width: 100%;
+    background: transparent;
+}
+
+.form-input textarea{
+    height: 5rem;
+    border: 0 solid grey;
+}
+
+.form-input input,
+.form-input select{
+    border: 0;
+    border-bottom: 2px solid grey;
+}
+
+.form-input input  ~ label,
+.form-input textarea  ~ label{
+    color: #191919;
+    position: absolute;
+    padding-left: 1vw;
+    left: 0;
+    top: 0;
+    transition: all .25s ease;
+    pointer-events: none;
+}
+ 
+.form-input input:focus ~ label,
+.form-input textarea:focus ~ label,
+.form-input input:valid ~ label,
+.form-input textarea:valid ~ label,
+.form-input select:valid ~ label{
+    font-size: 0.5rem;
+    transform: translateY(-1vh);
+}
+
+.form-input select ~ label{
+    color: #191919;
+    position: absolute;
+    padding-left: 1vw;
+    left: 0;
+    top: 0;
+    transition: all .25s ease;
+    pointer-events: none;
+}
+
+.submit-button {
+    position: relative;
+    background: transparent;
+    height: 12vh;
+    width: 100%;
+    border: none;
+    font-size : 1.5rem;
+    color: black;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.submit-button:hover {
+    font-size: 3rem;
+}
+  
