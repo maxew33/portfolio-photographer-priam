@@ -74,7 +74,7 @@ export const gallery = [
             {
                 id: 10009,
                 src: 'https://www.maxime-malfilatre.com/sandbox/BenPriam/img/street/street(9).jpg',
-                name: 'Nracisses',
+                name: 'Narcisses',
                 date: '14/04/2015',
                 lieu: 'sur le bord de la fenêtre',
                 description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et iste ut, delectus corrupti a voluptatum quam, rerum blanditiis sapiente ratione harum, voluptate exercitationem! Laudantium minima dolore provident illo voluptatibus optio eum officiis, architecto necessitatibus! Asperiores quo repellat error eaque suscipit officiis quibusdam vitae id accusantium voluptatum! Consequuntur labore adipisci nulla laboriosam excepturi quisquam porro?'

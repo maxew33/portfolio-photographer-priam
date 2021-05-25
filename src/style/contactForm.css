@@ -58,13 +58,13 @@ label{
 
 .form-input textarea{
     height: 5rem;
-    border: 0 solid grey;
+    border: 0;
 }
 
 .form-input input,
 .form-input select{
     border: 0;
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid var(--main-color);
 }
 
 .form-input input  ~ label,

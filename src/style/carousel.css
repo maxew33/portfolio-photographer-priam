@@ -78,9 +78,10 @@
     font-family: 'Dancing Script', cursive;
     z-index: 20;
 }
+
 .titreToTop{
     transform: translateY(-65vh); 
-    font-size : 6rem;
+    font-size: 6rem;
     color: white;
 }
 
@@ -95,6 +96,8 @@
     opacity: 0;
     transition: all .5s ease-in-out;
 }
+
+/* rubriques contact et about */
 
 .rubrique{
     display: none;
@@ -117,32 +120,26 @@
 }
 
 .rubrique-container{
-    width: 60%;
+    width: 90%;
     height: 90%;
-    display: grid;
-    grid-template-columns: 2fr 3fr;
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.rubrique-title{
-    grid-column-start: 1;
-    grid-column-end: 2;
-    font-size: 4rem;
-    font-family: 'Dancing Script', cursive;
-}
-
-.rubrique-left{
+.rubrique-contact-left{
     display: flex;
     flex-direction: column;
+    width: 30%;
     height: 50%;
     justify-content: space-evenly;
 }
 
-.contact-title{
+.rubrique-title{
     text-align: center;
     font-size: 3rem;
 }
 
-.rubrique-left p{
+.rubrique-contact-left p{
     padding: 6px;
 }
 
@@ -162,6 +159,101 @@
     stroke-width : .75;
 }
 
+.rubrique-contact-right{
+    display: flex;
+    justify-content: center;
+}
+
+/* about */
+
+.about>.rubrique-curvedline-container{
+    left: 25vw;
+}
+
+.rubrique-about-left{
+    display: flex;
+    justify-content: center;
+}
+
+.about-portrait-container{
+    background: whitesmoke;
+    padding: 1.25vh;
+    height: 70vh;
+    width: 57.5vh;
+}
+
 .portrait{
-    border-radius: 40% 80% 40% 75%;
+    width: 100%;
+    height: auto;
+}
+
+.portrait-name{
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem;
+}
+
+.rubrique-about-right{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 50%;
+    justify-content: space-evenly;
+}
+
+.rubrique-about-right p{
+    padding: 6px;
+}
+
+.about-social{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.about-social__icon {
+    display: flex;
+    justify-content: center;    
+    cursor: pointer;
+}
+
+.about-social__icon::before{
+    transition: all .5s ease-in-out;
+    font-size: 1rem;
+    position: absolute;
+    opacity: 0;
+}
+  
+.about-social__icon-flickr::before{
+    content: "flickr";
+}
+  
+.about-social__icon-instagram::before{
+    content: "instagram";
+}
+  
+.about-social__icon-contact::before{
+    content: "contact";
+}
+  
+.about-social__icon:hover::before{
+    opacity: 1;
+    transform: translateY(3.5rem);
+}
+
+@media (orientation: portrait) {
+    .rubrique-container {
+      flex-direction: column;
+    }
+    .rubrique-left,
+    .rubrique-right{
+        width: 100%;
+        margin: 2%;
+    }
 }

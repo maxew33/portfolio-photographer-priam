@@ -6,13 +6,23 @@ import { faInstagram, faTwitter, faFlickr } from '@fortawesome/free-brands-svg-i
 const Social = () => {
     return(
         <div className = "social">
-              <a href="https://www.flickr.com/people/lilbennyhill/" className = "social__icon social__icon-flickr">
+              <a href="https://www.flickr.com/people/lilbennyhill/" 
+              target="_blank"
+              rel="noopener" 
+              className = "social__icon social__icon-flickr"
+              >
                 <FontAwesomeIcon icon={faFlickr} />
               </a>
-              <a href="#" className = "social__icon social__icon-instagram">
+              <a href="#"  
+              target="_blank"
+              rel="noopener" 
+              className = "social__icon social__icon-instagram">
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
-              <a href="#" className = "social__icon social__icon-twitter">
+              <a href="#"  
+              target="_blank"
+              rel="noopener" 
+              className = "social__icon social__icon-twitter">
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
         </div>
