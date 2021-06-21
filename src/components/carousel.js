@@ -1,16 +1,15 @@
 import React, {Component, Fragment} from 'react'
 import {gallery} from './gallery'
-// import {showGallery} from './showGallery'
 
 import '../style/carousel.css'
 import NavigationArrow from './navigationArrow'
 import ImgDetailContainer from './imgDetailContainer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faTwitter, faFlickr } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faInstagram, faFlickr } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope, faTimes, faChevronLeft, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import ShowPicture from './showPicture'
-import Social from './social'
 import ContactForm from './contactForm'
+import Social from './social'
 
 const galeries = gallery,
 galerie = galeries[0],
@@ -18,119 +17,9 @@ $ = document.querySelector.bind(document),
 $$ = document.querySelectorAll.bind(document)
 
 
-console.log(galerie.src)
-
 let idGalerie = 0,
 galleryShown = false,
 exitAllowed = false
-
-const showGallery = (galerie) => {
-    const titre = $('.titre'),
-    name = $('.name'),
-    container = $('.show__container'),
-    navigationLeft = $('.navigation-left'),
-    navigationRight = $('.navigation-right'),
-    mainPicture = $('.show__pictures-img'),
-    leftPictureContainer = $('.show__pictures-column-left'),
-    centerPictureContainer = $('.show__pictures-column-center'),
-    rightPictureContainer = $('.show__pictures-column-right'),
-    backToTop = $('.backToTop')
-
-    mainPicture.classList.add('show__pictures-img-shown')    
-
-    backToTop.classList.add('backToTop-apparition')
-
-    centerPictureContainer.setAttribute('style', 'position: absolute; top: 0;')
-    rightPictureContainer.setAttribute('style', 'position: absolute; top: 70vh; align-items: center;')
-    leftPictureContainer.setAttribute('style', 'position: absolute; top: 70vh; align-items: center;')
-
-    let imageRank = 2
-
-    let mainImageRank = 1
-    
-    titre.classList.add('titreToTop')
-    name.classList.add('nameToTop')
-    container.style.overflowY = 'scroll'
-    navigationLeft.style.transform = 'translateX(-75vh)'
-    navigationRight.style.transform = 'translateX(75vh)'
-
-    setTimeout(function(){ 
-        showPictures('left', 1)
-        showPictures('right', 2)
-    }, 500);
-
-    //  AJOUTER UN EVENT LISTENER SUR KEY DOWN ET SWIPE
-
-    container.addEventListener('scroll', (e) => {
-
-        //chargement des images au cours du défilement
-        const picturesFollowed = $$('img[data-follow = true]')
-        for(const followed of picturesFollowed){
-            const bottomPos = followed.getBoundingClientRect().bottom
-            let rank = 0
-
-            if (window.innerHeight >= bottomPos){
-                followed.dataset.follow = false
-                const place = followed.dataset.column
-                if(place === 'center'){
-                    mainImageRank++
-                    if(mainImageRank >= galerie.img.length){mainImageRank = 0}
-                    rank = mainImageRank
-                }
-                else{
-                    imageRank++
-                    if(imageRank >= galerie.img.length){imageRank = 0}
-                    rank = imageRank
-                }                
-                showPictures(place, rank)
-                }
-            }
-
-            //parallax effect j'accèlère le défilement des images des côtés par rapport à celles du centre
-        const fastPictures = $$('img[data-parallax = true]')
-        for(const fast of fastPictures){
-            fast.style.transform = 'translateY( ' + 0.5 * centerPictureContainer.getBoundingClientRect().top + 'px)'
-        }
-    })
-
-    const showPictures = (place, rank) =>{
-
-        const picture = document.createElement('img')
-        picture.className = "show__pictures-img-shown"
-        picture.src = galerie.img[rank].src
-        picture.alt = galerie.img[rank].name
-        picture.dataset.follow = true
-        picture.dataset.column = place
-        picture.style.width = 100 + (Math.random()-1)*10 + '%'
-        picture.addEventListener('click', () => { 
-            //Modifier le state de carousel en mettant à jour le rank
-            showPicture(galerie, rank)
-
-        })
-
-        switch(place){
-            case 'right':
-                picture.dataset.parallax='true'
-                rightPictureContainer.appendChild(picture)
-                picture.style.marginRight = 10 - (Math.random() * 10)+ 'vw'
-                break
-
-            case 'left':
-                picture.dataset.parallax='true'
-                leftPictureContainer.appendChild(picture)
-                picture.style.marginLeft = 10 - (Math.random() * 10)+ 'vw'
-                break
-
-            // case 'center':
-            //     centerPictureContainer.appendChild(picture)
-            //     break
-
-            default: 
-                centerPictureContainer.appendChild(picture)
-                break
-        }
-    }
-}
 
 const showPicture = (galerie, rank) => {
 
@@ -151,7 +40,8 @@ class Carousel extends Component {
 
     state = {
         galerie, 
-        rank : 3,
+        leftRank : 3,
+        rightRank : 4,
         centerRank : 1,
         clicked : false,
         leftCol : [],
@@ -173,13 +63,7 @@ class Carousel extends Component {
         galerie.id = galeries[idGalerie].id
         galerie.img = galeries[idGalerie].img
         this.setState({ galerie })
-
-        // document.documentElement.style.setProperty('--main-color', galerie.color)
     }
-
-    // handleLoad = (color) => {
-    //     document.documentElement.style.setProperty('--main-color', color)
-    // }
 
     handleClickPhoto = (galerie, newRank) => {
         if(!galleryShown){
@@ -189,6 +73,7 @@ class Carousel extends Component {
             $('.show__pictures-img').classList.toggle('step2')
 
             $('.backToTop').classList.toggle('backToTop-apparition')
+            $('.previous').classList.toggle('previous-apparition')
 
             $('.show__pictures-column-center').setAttribute('style', 'position: absolute; top: 0;')
             $('.show__pictures-column-right').setAttribute('style', 'position: absolute; top: 70vh; align-items: center;')
@@ -202,15 +87,10 @@ class Carousel extends Component {
 
             setTimeout(() =>{
                 this.setState({
-                    leftCol : [...this.state.leftCol, <ShowPicture galerie = {galerie}  position = 'left' rank = '1' clicked = { () => this.handleClickPhoto(galerie, 1)}/>]
-                })
-                this.setState({
-                    rightCol : [...this.state.rightCol, <ShowPicture galerie = {galerie}  position = 'right' rank = '4' clicked = { () => this.handleClickPhoto(galerie, 4)}/>]
-                })
-
-                this.setState ({centerRank : '2'})
-                this.setState({
-                 middleCol : [...this.state.middleCol, <ShowPicture galerie = {galerie}  position = 'center' rank = '2' clicked = { () => this.handleClickPhoto(galerie, 2)}/>]
+                    leftCol : [...this.state.leftCol, <ShowPicture galerie = {galerie}  position = 'left' rank = '1' clicked = { () => this.handleClickPhoto(galerie, 1)}/>],
+                    rightCol : [...this.state.rightCol, <ShowPicture galerie = {galerie}  position = 'right' rank = '4' clicked = { () => this.handleClickPhoto(galerie, 4)}/>],
+                    centerRank : '2',
+                    middleCol : [...this.state.middleCol, <ShowPicture galerie = {galerie}  position = 'center' rank = '2' clicked = { () => this.handleClickPhoto(galerie, 2)}/>]
               })
 
                console.log('apparition sur les côtés')
@@ -218,10 +98,14 @@ class Carousel extends Component {
         }
         else{
             console.log('click, rank : ' + newRank)
-            this.setState({ rank: newRank })
-            this.setState({ clicked: !this.state.clicked })
+            this.setState({ 
+                rank: newRank,
+                clicked: !this.state.clicked 
+            })
             console.log('rank state : ' + this.state.rank)
             showPicture(galerie, newRank)
+            $('.backToTop').classList.toggle('backToTop-apparition')
+            $('.previous').classList.toggle('previous-apparition')
             exitAllowed = true
         }
     }
@@ -232,6 +116,8 @@ class Carousel extends Component {
             $('.slide-transition').style.left = '-100vw'
             $('.exitcross').style.opacity = '0'
             setTimeout(() => {
+                $('.backToTop').classList.toggle('backToTop-apparition')
+                $('.previous').classList.toggle('previous-apparition')
                 $('.image__detail').style.left = '-100vw'
                 this.setState({ clicked: !this.state.clicked })
                 $('.exitcross').style.display = 'none'
@@ -249,6 +135,10 @@ class Carousel extends Component {
         setTimeout(() => {
             $('.' + rubrique).style.left = '0'
             $('.' + rubrique).style.display = 'none'
+            if(galleryShown){
+                $('.backToTop').classList.toggle('backToTop-apparition')
+                $('.previous').classList.toggle('previous-apparition')
+            }
         }, 1000)
     }
 
@@ -270,15 +160,17 @@ class Carousel extends Component {
 
     handleScroll = () => {
        console.log('scroll de handlescroll')
+       console.log(this.state.leftCol)
                //chargement des images au cours du défilement
                const picturesFollowed = $$('img[data-follow = true]')
                const galerie = this.state.galerie
                for(const followed of picturesFollowed){
                    const bottomPos = followed.getBoundingClientRect().bottom - 50
+
        
                    if (window.innerHeight >= bottomPos){
-
-                        console.log('création')
+                       
+                    console.log('création')
 
                        followed.dataset.follow = false
                        const place = followed.dataset.column
@@ -289,28 +181,28 @@ class Carousel extends Component {
                            this.setState ({centerRank : rank})
                            this.setState({
                             middleCol : [...this.state.middleCol, <ShowPicture galerie = {galerie}  position = 'center' rank = {rank} clicked = { () => this.handleClickPhoto(galerie, rank)}/>]
-                         })
-
-                       }
-                       else {
-                        let rank = this.state.rank
-                        rank++
+                        })
+                    }
+                    else if(place === 'left'){
+                        let rank = this.state.leftRank
+                        rank += 2
+                        if(rank >= galerie.img.length){rank = 1}
+                        this.setState ({
+                            leftRank : rank,
+                            leftCol : [...this.state.leftCol, <ShowPicture galerie = {galerie}  position = 'left' rank = {rank} clicked = { () => this.handleClickPhoto(galerie, rank)}/>]
+                        })
+                    }
+                    else if(place === 'right'){
+                        let rank = this.state.rightRank
+                        rank += 2
+                        console.log('rightrank ' + this.state.rightRank + 'et rank : ' + rank)
                         if(rank >= galerie.img.length){rank = 0}
-                        this.setState ({rank : rank})
-
-                           if(place === 'left'){
-                               this.setState({
-                                   leftCol : [...this.state.leftCol, <ShowPicture galerie = {galerie}  position = 'left' rank = {rank} clicked = { () => this.handleClickPhoto(galerie, rank)}/>]
-                                })
-                            }
-                            else if(place === 'right'){
-                                this.setState({
-                                    rightCol : [...this.state.rightCol, <ShowPicture galerie = {galerie}  position = 'right' rank = {rank} clicked = { () => this.handleClickPhoto(galerie, rank)}/>]
-                                })
-                            }             
-                    //    showPictures(place, rank)
-                       }
-                   }
+                        this.setState ({
+                            rightRank : rank,
+                            rightCol : [...this.state.rightCol, <ShowPicture galerie = {galerie}  position = 'right' rank = {rank} clicked = { () => this.handleClickPhoto(galerie, rank)}/>]
+                        })
+                    }
+                }
        
                    //parallax effect j'accèlère le défilement des images des côtés par rapport à celles du centre
                const fastPictures = $$('img[data-parallax = true]')
@@ -320,11 +212,107 @@ class Carousel extends Component {
             }
     }
 
-    // handleUpdateRank = (newRank) => {
-    //     const rank = { ...this.state.rank }
-    //     rank = newRank
-    //     this.setState ({rank})
-    // }
+    handleClickPrevious = () => {
+        console.log('clic before')
+        
+        this.previous()
+    }
+
+    previous(){
+        if(galleryShown){
+        galleryShown = false
+            
+        $('.show__pictures-img').classList.toggle('show__pictures-img-shown')
+        $('.show__pictures-img').classList.toggle('step2')
+
+        $('.backToTop').classList.toggle('backToTop-apparition')
+        $('.previous').classList.toggle('previous-apparition')
+
+        $('.show__pictures-column-center').setAttribute('style', 'position: static;')
+        $('.show__pictures-column-right').setAttribute('style', 'position: static;')
+        $('.show__pictures-column-left').setAttribute('style', 'position: static;')
+       
+        $('.titre').classList.toggle('titreToTop')
+        $('.name').classList.toggle('nameToTop')
+        $('.show__container').style.overflowY = 'scroll'
+        $('.navigation-left').style.transform = 'translateX(0)'
+        $('.navigation-right').style.transform = 'translateX(0)'
+        
+        this.setState({
+                leftCol : [],
+                rightCol : [],
+                centerRank : '2',
+                middleCol : []
+        })
+    }
+        else{
+            console.log('caca')
+        }
+    }
+
+    handleClickBackToTop = () => {
+        const showContainer = $('.show__container')
+        showContainer.scrollTo({top: 0, behavior: 'smooth'})
+    }
+
+    handleClickBurger = () => {
+        console.log('click')
+        const burger = document.getElementsByClassName('burger')
+        const rubrique = document.getElementsByClassName('menu-rubrique')
+    
+            burger[0].classList.toggle('burger-top')
+            burger[1].classList.toggle('burger-middle')
+            burger[2].classList.toggle('burger-bottom')
+            for (const element of rubrique){
+                element.classList.toggle('menu-rubrique-apparition')
+            }
+    }
+
+    handleClickMenu = (idRubrique) => {
+        switch (idRubrique){
+            case 1 : 
+            // window.location.reload()
+                if(galleryShown){this.previous()}
+                const galerie = { ...this.state.galerie }
+
+                idGalerie = 0
+                
+                galerie.name = galeries[idGalerie].name
+                galerie.src = galeries[idGalerie].src
+                galerie.color = galeries[idGalerie].color
+                galerie.id = galeries[idGalerie].id
+                galerie.img = galeries[idGalerie].img
+                this.setState({ galerie })
+                break
+    
+            case 2 :
+                console.log('contact')
+                $('.slide-transition').style.left = '100vw'
+                setTimeout(function(){
+                    $('.contact').style.display = 'flex'
+                    if(galleryShown){
+                        $('.backToTop').classList.toggle('backToTop-apparition')
+                        $('.previous').classList.toggle('previous-apparition')
+                    }
+                }, 500)
+                break
+    
+            case 3 :
+                console.log('about')
+                $('.slide-transition').style.left = '100vw'
+                setTimeout(function(){
+                    $('.about').style.display = 'flex'
+                    if(galleryShown){
+                        $('.backToTop').classList.toggle('backToTop-apparition')
+                        $('.previous').classList.toggle('previous-apparition')
+                    }
+                }, 500)
+                break
+    
+            default : 
+                console.log('pas d id passé')
+        }
+    }
 
     render(){
         const { galerie, rank } = this.state
@@ -333,6 +321,40 @@ class Carousel extends Component {
 
         return(
             <Fragment>
+
+                <div className = "header">
+
+                    <div className="menu">
+                        <div className = "burger-container" 
+                            onClick = { () => this.handleClickBurger() }>
+                            <div className = "burger"></div>
+                            <div className = "burger"></div>
+                            <div className = "burger"></div>
+                        </div>
+
+                        <div className="menu-rubrique" onClick = { () => this.handleClickMenu(1)}>
+                            Accueil
+                        </div>
+
+                        <div className="menu-rubrique" onClick = {() => this.handleClickMenu(2)}>
+                            Contact
+                        </div>
+
+                        <div className="menu-rubrique" onClick = {() => this.handleClickMenu(3)}>
+                            À propos
+                        </div>
+
+                    </div>
+
+                    <h1 className = "name"
+                        onClick = { () => this.handleClickMenu(3)}>
+                    Benedict Priam
+                    </h1>
+
+                    <Social />
+
+                </div>
+
             <div className="show__container"
             onScroll = { () => this.handleScroll()}
             >
@@ -351,15 +373,9 @@ class Carousel extends Component {
                         src = {galerie.img[0].src} 
                         alt = {galerie.name}
                         onClick = { () => this.handleClickPhoto(galerie, 0) }
-                        // onLoad = { () => this.handleLoad(galerie.color) }
-                        // updateRank = { (newRank) => this.handleUpdateRank(newRank) }
                     />
                     {this.state.middleCol}
                 </div>
-
-                {/* <ShowPictures
-                    galerie = {galerie}
-                /> */}
 
                 <div className="show__pictures-column show__pictures-column-right">
                     <NavigationArrow 
@@ -374,12 +390,12 @@ class Carousel extends Component {
                 
             </div>
 
-            {/* <div className="image__detail"></div> */}
-
-            {this.state.clicked ? <ImgDetailContainer 
+            {this.state.clicked ? 
+                <ImgDetailContainer 
                 galerie = {galerie}
                 rank = {rank}
-                /> : null}
+                /> 
+                : null}
 
                 <div className="exitcross"
                     onClick={ () => this.handleClickExit(rank) }>
@@ -501,8 +517,50 @@ class Carousel extends Component {
                 </div>
                 
             </div>
+            
+            <div className = "footer">
+                <div className = "previous" >
+                    <div className = "previous-icon"
+                        onClick = { () => this.handleClickPrevious() }>
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                    </div>
+                </div>
 
-            </Fragment>
+                <div className = "backToTop" >
+                    <div className = "backToTop-icon"
+                        onClick = { () => this.handleClickBackToTop() }>
+                        <FontAwesomeIcon icon={faChevronUp} />
+                    </div>
+                </div>
+
+                <a href="https://www.maxime-malfilatre.com/"
+                    target="_blank"
+                    rel="noopener">
+                    <div className="link">
+                        <span>
+                            &#123;
+                        </span>
+                        <span className="before">
+                            <span className="before-text">
+                                site&nbsp;:
+                            </span>
+                        </span>
+                        <span className="my-name">
+                            m
+                        </span>
+                        <span className="after">
+                            <span className="after-text"> 
+                                <span className="spin">axe</span>
+                                <span>w</span>
+                            </span>
+                        </span>
+                        <span>
+                            &#125;
+                        </span>
+                    </div>
+                </a>
+            </div>  
+        </Fragment>
 
         )
     }

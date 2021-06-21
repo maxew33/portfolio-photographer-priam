@@ -47,13 +47,14 @@ h1 {
   grid-column-start: 2;
   text-align: center;
   font-family: 'Dancing Script', cursive;
-  font-size: 5rem;
+  font-size: min(5vw, 5rem);
   transition: all .5s ease-in-out;
+  cursor: pointer;
 }
 
 .nameToTop{
   transform: translateY(-2.5vh);
-  font-size: 2.5rem;
+  font-size: 0;
 }
 
 .slide-transition{

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../style/social.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faTwitter, faFlickr } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram, faFlickr } from '@fortawesome/free-brands-svg-icons'
 
 const Social = () => {
     return(
@@ -18,12 +18,6 @@ const Social = () => {
               rel="noopener" 
               className = "social__icon social__icon-instagram">
                 <FontAwesomeIcon icon={faInstagram} />
-              </a>
-              <a href="#"  
-              target="_blank"
-              rel="noopener" 
-              className = "social__icon social__icon-twitter">
-                <FontAwesomeIcon icon={faTwitter} />
               </a>
         </div>
     )
