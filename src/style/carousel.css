@@ -200,9 +200,14 @@
 .rubrique-curvedline-container{
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 75vw;
+    width: auto;
+    max-width: 75vw;
     height: auto;
+    max-height: 50vh;
+}
+
+.contact > .rubrique-curvedline-container{
+    left: 0;
 }
 
 .rubrique-curvedline{
@@ -220,8 +225,8 @@
 
 /* about */
 
-.about>.rubrique-curvedline-container{
-    left: 25vw;
+.about > .rubrique-curvedline-container{
+    right: 0;
 }
 
 .rubrique-about-left{

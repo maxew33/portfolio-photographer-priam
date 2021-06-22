@@ -2,14 +2,17 @@ import React, {Component, Fragment} from 'react'
 import {gallery} from './gallery'
 
 import '../style/carousel.css'
+
 import NavigationArrow from './navigationArrow'
 import ImgDetailContainer from './imgDetailContainer'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faFlickr } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope, faTimes, faChevronLeft, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import ShowPicture from './showPicture'
 import ContactForm from './contactForm'
 import Social from './social'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInstagram, faFlickr } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope, faTimes, faChevronLeft, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+
 
 const galeries = gallery,
 galerie = galeries[0],
@@ -28,9 +31,9 @@ const showPicture = (galerie, rank) => {
 
         console.log('click sur : ' + img.name)
         console.log(img)
-        $('.slide-transition').style.left = '100vw'
+        $('.slide-transition').style.transform = 'translateX(100vw)'
         setTimeout(function(){
-            $('.image__detail').style.left = '0'
+            $('.image__detail').style.transform = 'translateX(0)'
             $('.exitcross').style.opacity = '1'
             $('.exitcross').style.display = 'block'
         }, 500)
@@ -110,17 +113,15 @@ class Carousel extends Component {
         }
     }
 
-    handleClickExit = (rank) => {
-        console.log('click on exit : ' + rank)
+    handleClickExit = () => {
         if (exitAllowed){
-            $('.slide-transition').style.left = '-100vw'
+            $('.slide-transition').style.transform = 'translateX(-100vw)'
             $('.exitcross').style.opacity = '0'
             setTimeout(() => {
                 $('.backToTop').classList.toggle('backToTop-apparition')
                 $('.previous').classList.toggle('previous-apparition')
-                $('.image__detail').style.left = '-100vw'
+                $('.image__detail').style.transform = 'translateX(-100vw)'
                 this.setState({ clicked: !this.state.clicked })
-                $('.exitcross').style.display = 'none'
             }, 500)
             exitAllowed = false
         }
@@ -128,12 +129,12 @@ class Carousel extends Component {
     
     handleClickExitRubrique = (rubrique) => {
         console.log('click on exit rubrique: ' + rubrique)
-        $('.slide-transition').style.left = '-100vw'
+        $('.slide-transition').style.transform = 'translateX(-100vw)'
         setTimeout(() => {
-            $('.' + rubrique).style.left = '-100vw'
+            $('.' + rubrique).style.transform = 'translateX(-100vw)'
         }, 500)
         setTimeout(() => {
-            $('.' + rubrique).style.left = '0'
+            $('.' + rubrique).style.transform = 'translateX(0)'
             $('.' + rubrique).style.display = 'none'
             if(galleryShown){
                 $('.backToTop').classList.toggle('backToTop-apparition')
@@ -145,15 +146,15 @@ class Carousel extends Component {
     handleClickToggleRubrique = () => {
 
         console.log('click on toggle rubrique:')
-        $('.slide-transition').style.left = '-100vw'
+        $('.slide-transition').style.transform = 'translateX(-100vw)'
        
         setTimeout(() => {
-            $('.about').style.left = '-100vw'
+            $('.about').style.transform = 'translateX(-100vw)'
             $('.contact').style.display = 'flex'            
-            $('.slide-transition').style.left = '100vw'
+            $('.slide-transition').style.transform = 'translateX(100vw)'
         }, 500)
         setTimeout(() => {
-            $('.about').style.left = '0'
+            $('.about').style.transform = 'translateX(0)'
             $('.about').style.display = 'none'
         }, 1000)
     }
@@ -271,7 +272,6 @@ class Carousel extends Component {
     handleClickMenu = (idRubrique) => {
         switch (idRubrique){
             case 1 : 
-            // window.location.reload()
                 if(galleryShown){this.previous()}
                 const galerie = { ...this.state.galerie }
 
@@ -287,7 +287,7 @@ class Carousel extends Component {
     
             case 2 :
                 console.log('contact')
-                $('.slide-transition').style.left = '100vw'
+                $('.slide-transition').style.transform = 'translateX(100vw)'
                 setTimeout(function(){
                     $('.contact').style.display = 'flex'
                     if(galleryShown){
@@ -299,7 +299,7 @@ class Carousel extends Component {
     
             case 3 :
                 console.log('about')
-                $('.slide-transition').style.left = '100vw'
+                $('.slide-transition').style.transform = 'translateX(100vw)'
                 setTimeout(function(){
                     $('.about').style.display = 'flex'
                     if(galleryShown){
@@ -394,13 +394,9 @@ class Carousel extends Component {
                 <ImgDetailContainer 
                 galerie = {galerie}
                 rank = {rank}
+                exit = { this.handleClickExit }
                 /> 
                 : null}
-
-                <div className="exitcross"
-                    onClick={ () => this.handleClickExit(rank) }>
-                    <FontAwesomeIcon icon={faTimes} />
-                </div>
 
 
 {/* -------------------- CONTACT */}
@@ -473,7 +469,7 @@ class Carousel extends Component {
 
                     <div className="rubrique-about-right">
                         <h2 className="rubrique-title">
-                            A propos ...
+                            À propos ...
                         </h2>
                         <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, quisquam esse. Voluptatibus dolorem, illo atque, tempore animi fugit quod, exercitationem adipisci nesciunt aliquam rerum illum.

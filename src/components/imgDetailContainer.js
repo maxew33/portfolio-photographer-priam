@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+
 import '../style/imgDetailContainer.css'
-import { gallery } from './gallery'
+
 import ImgNavigationArrow from './imgNavigationArrow'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,19 +13,14 @@ class ImgDetailContainer extends Component{
         rank: this.props.rank
     }
 
-    handleClick = (rank) => {
-        document.querySelector('.slide-transition').style.left = '-100vw'
-        setTimeout(function(){
-            document.querySelector('.image__detail').style.left = '-100vw'
-        }, 500); 
-    }
-
     handleClickArrow = (value) => {
         console.log('click')
         console.log('value : ' + value)
         console.log(this.props.galerie.img.length)
-        let rank = this.state.rank
-        let idRank = rank
+
+        let rank = this.state.rank,
+            idRank = rank
+
         idRank += value
         if(idRank < 0){idRank = this.props.galerie.img.length - 1}
         if(idRank === this.props.galerie.img.length){ idRank = 0 }
@@ -31,6 +28,10 @@ class ImgDetailContainer extends Component{
         rank = idRank
         console.log('new rank : ' + rank)
         this.setState({ rank })
+    }
+
+    exit = () => {
+        this.props.exit()
     }
 
     render ()  {  
@@ -68,6 +69,12 @@ class ImgDetailContainer extends Component{
                         { this.props.galerie.img[rank].description }
                     </div>
                 </div>
+
+                <div className="exitcross"
+                    onClick={ () => this.exit() }>
+                        <FontAwesomeIcon icon={faTimes} />
+                </div>
+
             </div>
         )
     }

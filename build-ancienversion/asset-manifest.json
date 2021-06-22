@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/sandbox/BenPriam/static/css/main.ae506d84.chunk.css",
+    "main.js": "/sandbox/BenPriam/static/js/main.d3298e58.chunk.js",
+    "main.js.map": "/sandbox/BenPriam/static/js/main.d3298e58.chunk.js.map",
+    "runtime-main.js": "/sandbox/BenPriam/static/js/runtime-main.ebbc8339.js",
+    "runtime-main.js.map": "/sandbox/BenPriam/static/js/runtime-main.ebbc8339.js.map",
+    "static/js/2.8f53d259.chunk.js": "/sandbox/BenPriam/static/js/2.8f53d259.chunk.js",
+    "static/js/2.8f53d259.chunk.js.map": "/sandbox/BenPriam/static/js/2.8f53d259.chunk.js.map",
+    "static/js/3.423462b1.chunk.js": "/sandbox/BenPriam/static/js/3.423462b1.chunk.js",
+    "static/js/3.423462b1.chunk.js.map": "/sandbox/BenPriam/static/js/3.423462b1.chunk.js.map",
+    "index.html": "/sandbox/BenPriam/index.html",
+    "static/css/main.ae506d84.chunk.css.map": "/sandbox/BenPriam/static/css/main.ae506d84.chunk.css.map",
+    "static/js/2.8f53d259.chunk.js.LICENSE.txt": "/sandbox/BenPriam/static/js/2.8f53d259.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ebbc8339.js",
+    "static/js/2.8f53d259.chunk.js",
+    "static/css/main.ae506d84.chunk.css",
+    "static/js/main.d3298e58.chunk.js"
+  ]
+}
