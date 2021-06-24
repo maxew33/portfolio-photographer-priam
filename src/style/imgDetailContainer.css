@@ -1,10 +1,22 @@
 .image__detail{
-    position: absolute;
+    position: relative;
     height: 100vh;
     width: 100vw;
     transform: translateX(-100vw);
     z-index: 50;
     background:var(--main-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image__detail--nom-photographe-galerie{
+    font-family: 'Dancing Script', cursive;
+    font-size: 4.5rem;
+    text-align: center;
+}
+
+.image__detail-container{
     display: flex;
     align-items: center;
 }
@@ -30,17 +42,12 @@
     width: 40%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     padding: 5vh;
 }
 
 .image__detail-spec{
     margin-bottom: 5vh;
-}
-
-.image__detail-spec-nom-photographe{
-    font-family: 'Dancing Script', cursive;
-    font-size: 3rem;
-    text-align: center;
 }
 
 .image__detail-spec-nom-photo{
@@ -57,4 +64,53 @@
     top: 4vh;
     right: 4rem;
     font-size: 3rem;
+}
+
+
+@media (orientation: portrait) {
+
+    .image__detail{
+        align-items: flex-start;
+    }
+   
+    .image__detail--nom-photographe-galerie{
+        font-size: 2rem;
+        margin: 2vh 0;
+        width: 80vw;
+    }
+    
+    .image__detail-container{
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+    
+    .image__detail-img-container{
+        width: 100vw;
+        max-height: 100vh;
+        margin: 0;
+    }
+    
+    .image__detail-img{
+        max-width: 100vw;
+        max-height: 100vh;
+        height: auto;
+        width: auto;
+    }
+    
+    .image__detail-spec-container{
+        height: auto;
+        width: 90vw;
+        padding: 0;
+        margin-top: 5vh;
+    }
+    
+    .image__detail-spec{
+        margin-bottom: 5vh;
+    }
+    
+    .exitcross{
+        top: 0;
+        right: 2vw;
+    }
+
 }

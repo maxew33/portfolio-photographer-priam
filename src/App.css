@@ -1,5 +1,7 @@
 :root{
   --main-color: #293450;
+  --main-lengthUnit: 1vh;
+  --secondary-lengthUnit: 1vw;
 }
 
 *, ::before, ::after{
@@ -18,7 +20,7 @@
 }
 
 body {
-  transition: all .5s ease-in-out;
+  transition: background-color .25s ease-in-out;
   background: var(--main-color);
 }
 
@@ -29,7 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /* --- HEADER --- */
@@ -64,5 +66,17 @@ h1 {
   transform: translateX(-100vw);
   background:var(--main-color);
   z-index: 60;
-  transition: all 1s linear;
+  transition: transform 1s linear;
+}
+
+/* --- RESPONSIVE --- */
+
+@media (orientation: portrait) {
+  H1{
+    font-size: 2.5rem;
+  }
+
+  .slide-transition{
+    transition: transform .75s linear;
+  }
 }

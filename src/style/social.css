@@ -35,3 +35,13 @@
     opacity: 1;
     transform: translate(3.15rem, 1.5rem);
   }
+
+  /* --- RESPONSIVE --- */
+
+@media (orientation: portrait) {
+  .social{
+    top: 4vw;
+    right: 8vw;
+    font-size: 2rem;
+  }
+}

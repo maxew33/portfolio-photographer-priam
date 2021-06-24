@@ -29,7 +29,8 @@ label{
     right: 0;
     height: 50%;
     width: 50%;
-    background:whitesmoke;
+    background: transparent;
+    pointer-events: none;
 }
 
 .form-bg g{
@@ -44,7 +45,7 @@ label{
     position: relative;
     width: 100%;
     padding: 0 1vw;
-    height: 1.5rem;
+    font-size: 1rem;
 }
 
 .form-input input,
@@ -52,19 +53,17 @@ label{
 .form-input select{
     padding: 5px;
     width: 100%;
-    background: transparent;
+    background:var(--main-color);
+    opacity: .1;
+}
+
+.form-input:nth-child(6){
+    height: 15vh;
 }
 
 .form-input textarea{
-    height: 5rem;
-    border: 0;
+    height: 100%;
     resize: none;
-}
-
-.form-input input,
-.form-input select{
-    border: 0;
-    border-bottom: 2px solid var(--main-color);
 }
 
 .form-input input  ~ label,
@@ -72,8 +71,8 @@ label{
     color: #191919;
     position: absolute;
     padding-left: 1vw;
-    left: 0;
-    top: 0;
+    left: 2px;
+    top: 2px;
     transition: all .25s ease;
     pointer-events: none;
 }
@@ -112,4 +111,19 @@ label{
 .submit-button:hover {
     font-size: 3rem;
 }
-  
+
+
+/* --- RESPONSIVE --- */
+
+@media (orientation: portrait) {
+    
+    .form-container {   
+        padding: 2vw;
+        height: 110vw;
+        width: 90vw;
+    }
+    
+    .form-input-container{
+        height: 88vw;
+    }
+  }

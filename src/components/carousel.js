@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react'
 import {gallery} from './gallery'
-
 import '../style/carousel.css'
 
 import NavigationArrow from './navigationArrow'
@@ -11,7 +10,7 @@ import Social from './social'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faFlickr } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope, faTimes, faChevronLeft, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faTimes, faChevronLeft, faChevronUp, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 
 const galeries = gallery,
@@ -22,7 +21,10 @@ $$ = document.querySelectorAll.bind(document)
 
 let idGalerie = 0,
 galleryShown = false,
-exitAllowed = false
+exitAllowed = false,
+xStart,
+xEnd,
+xDelta
 
 const showPicture = (galerie, rank) => {
 
@@ -161,27 +163,28 @@ class Carousel extends Component {
 
     handleScroll = () => {
        console.log('scroll de handlescroll')
-       console.log(this.state.leftCol)
+       if(galleryShown){
                //chargement des images au cours du défilement
-               const picturesFollowed = $$('img[data-follow = true]')
-               const galerie = this.state.galerie
-               for(const followed of picturesFollowed){
-                   const bottomPos = followed.getBoundingClientRect().bottom - 50
+            const picturesFollowed = $$('img[data-follow = true]')
+           const galerie = this.state.galerie
+           for(const followed of picturesFollowed){
+               const bottomPos = followed.getBoundingClientRect().bottom - 50
 
        
-                   if (window.innerHeight >= bottomPos){
+                if (window.innerHeight >= bottomPos){
                        
-                    console.log('création')
+                console.log('création')
 
-                       followed.dataset.follow = false
-                       const place = followed.dataset.column
-                       if(place === 'center'){
-                           let rank = this.state.centerRank
-                           rank++
-                           if(rank >= galerie.img.length){rank = 0}
-                           this.setState ({centerRank : rank})
-                           this.setState({
-                            middleCol : [...this.state.middleCol, <ShowPicture galerie = {galerie}  position = 'center' rank = {rank} clicked = { () => this.handleClickPhoto(galerie, rank)}/>]
+                    followed.dataset.follow = false
+                   const place = followed.dataset.column
+                   if(place === 'center'){
+                       let rank = this.state.centerRank
+                       rank++
+                       if(rank >= galerie.img.length){rank = 0}
+                       
+                       this.setState ({centerRank : rank})
+                       this.setState({
+                        middleCol : [...this.state.middleCol, <ShowPicture galerie = {galerie}  position = 'center' rank = {rank} clicked = { () => this.handleClickPhoto(galerie, rank)}/>]
                         })
                     }
                     else if(place === 'left'){
@@ -211,6 +214,7 @@ class Carousel extends Component {
                    fast.style.transform = 'translateY( ' + 0.5 * $('.show__pictures-column-center').getBoundingClientRect().top + 'px)'
                }
             }
+        }
     }
 
     handleClickPrevious = () => {
@@ -314,6 +318,48 @@ class Carousel extends Component {
         }
     }
 
+    handleTouchStart = (e) => {
+        e.preventDefault()
+        const touches = e.changedTouches
+        xStart = touches[0].clientX
+        console.log('start : ' + xStart)
+    }
+
+    handleTouchEnd = (e, galerie) => {
+
+        if(!galleryShown){
+            e.preventDefault()
+
+            const touches = e.changedTouches
+            xEnd = touches[0].clientX
+            xDelta = xEnd - xStart
+            const value = Math.sign(xDelta)
+
+            if(Math.abs(xDelta) < 10){
+                console.log('clic')
+                this.handleClickPhoto(galerie, 0)
+            }
+            else{
+            const galerie = { ...this.state.galerie }
+
+            idGalerie += value
+            if(idGalerie < 0){idGalerie = galeries.length - 1}
+            if(idGalerie === galeries.length){ idGalerie = 0 }
+            
+            galerie.name = galeries[idGalerie].name
+            galerie.src = galeries[idGalerie].src
+            galerie.color = galeries[idGalerie].color
+            galerie.id = galeries[idGalerie].id
+            galerie.img = galeries[idGalerie].img
+            this.setState({ galerie })
+            } 
+        }
+        else{
+            
+        }
+        
+    }
+
     render(){
         const { galerie, rank } = this.state
 
@@ -356,7 +402,7 @@ class Carousel extends Component {
                 </div>
 
             <div className="show__container"
-            onScroll = { () => this.handleScroll()}
+                onScroll = { () => this.handleScroll()}
             >
                 <div className="show__pictures-column show__pictures-column-left">
                     <NavigationArrow 
@@ -365,23 +411,35 @@ class Carousel extends Component {
                     {this.state.leftCol}
                 </div>
 
-                <div className="show__pictures-column show__pictures-column-center">
-                    <img
-                        className="show__pictures-img"
-                        data-follow='true'
-                        data-column='center'
-                        src = {galerie.img[0].src} 
-                        alt = {galerie.name}
-                        onClick = { () => this.handleClickPhoto(galerie, 0) }
-                    />
-                    {this.state.middleCol}
+                <div className="navigation-chevrons navigation-chevrons-left"
+                    onClick = { () => this.handleClickArrow(-1)}>
+                    <FontAwesomeIcon icon={faChevronLeft} />
                 </div>
+
+                <div className="show__pictures-column show__pictures-column-center"
+                    onTouchStart = { (e) => this.handleTouchStart(e)}
+                    onTouchEnd = { (e) => this.handleTouchEnd(e, galerie)}>
+                        <img
+                            className="show__pictures-img"
+                            data-follow='true'
+                            data-column='center'
+                            src = {galerie.img[0].src} 
+                            alt = {galerie.name}
+                            onClick = { () => this.handleClickPhoto(galerie, 0) }
+                        />
+                        {this.state.middleCol}
+                    </div>
 
                 <div className="show__pictures-column show__pictures-column-right">
                     <NavigationArrow 
                         direction='right' 
                         chgt = { () => this.handleClickArrow(1)}/>
                     {this.state.rightCol}
+                </div>
+
+                <div className="navigation-chevrons navigation-chevrons-right"
+                    onClick = { () => this.handleClickArrow(1)}>
+                    <FontAwesomeIcon icon={faChevronRight} />
                 </div>
 
                 <h2 className="titre">

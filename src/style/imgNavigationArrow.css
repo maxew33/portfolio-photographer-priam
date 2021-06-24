@@ -46,3 +46,9 @@
 {
     transform: rotate(-45deg);
 }
+
+@media (orientation: portrait){
+    .imgNavigation{
+        display: none;
+    }
+}

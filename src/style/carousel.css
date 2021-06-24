@@ -122,7 +122,7 @@
 }
   
 .titre{
-    position: fixed;
+    position: absolute;
     bottom: 0;
     transform: translateY(-17.5vh);
     font-size: min(5vw, 5rem);
@@ -151,6 +151,10 @@
     transition: all .5s ease-in-out;
 }
 
+.navigation-chevrons{
+    display: none;
+}
+
 /* rubriques contact et about */
 
 .rubrique{
@@ -162,6 +166,7 @@
     background: var(--main-color);
     position: absolute;
     top: 0;
+    font-size: 1.5rem;
     z-index: 30;
 }
 
@@ -251,7 +256,7 @@
     text-align: center;
     color: black;
     font-family: 'Dancing Script', cursive;
-    font-size: 5rem;
+    font-size: 9vh;
 }
 
 .rubrique-about-right{
@@ -273,7 +278,7 @@
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
-    font-size: 3rem;
+    font-size: 5rem;
 }
 
 .about-social__icon {
@@ -328,7 +333,6 @@
     grid-column: 1;
     opacity: 0;
     display: none;
-    justify-self: start;
   }
   
 .previous-icon{
@@ -375,7 +379,7 @@
     width: 12rem;
     opacity: 0;
     display: none;
-    justify-self: center;    
+
   }
 
 .backToTop-apparition{
@@ -396,6 +400,8 @@
     pointer-events: auto;
     font-size: 3rem;
     width: auto;
+    justify-self: center;
+    text-align: center;
 }
 
 .backToTop-icon::before{
@@ -420,7 +426,6 @@
     bottom: 4vh;
     right: 0;
     width: 15rem;
-    grid-column: 3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -464,16 +469,188 @@
     transform: rotate(360deg);
 }
 
-
-
+/* --- RESPONSIVE --- */
 
 @media (orientation: portrait) {
+    
+    .menu{
+        top: 4vw;
+        left: 4vw;
+    }
+    
+    .menu-rubrique-apparition{
+        margin-top: 7.5vh;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+    
+    /* SHOW CONTAINER */
+
+    .show__pictures-column-center{
+        width: 90vw;
+    }
+
+    .show__pictures-column-left{
+        display: none;
+    }
+
+    .show__pictures-column-right{
+        display: none;
+    }
+
+    .show__pictures-img{
+        padding: 2vw 2vw 15vw;
+        height: 110vw;
+        width: 90vw;
+    }
+
+    .navigation-chevrons{
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+    }
+    
+    .navigation-chevrons-right{
+        right: 0;
+    }
+
+    .navigation-chevrons-left{
+        left: 0;
+    }
+
+    .step2{
+        width: auto;
+        max-width: 100vw;
+        height: auto;
+        max-height: 100vh;
+    }
+
+    .titre{
+        top: 50%;
+        transform: translateY(calc(48.5vw - 1rem));
+        font-size: 2rem;
+        height: 2rem;
+    }
+
+    .titreToTop{
+        transform: translateY(-50vh); 
+        font-size: 3rem;
+        color: white;
+    }
+
+    /* rubriques contact et about */
+    .rubrique{
+        z-index: 40;
+        font-size: 1rem;
+    }
+    
     .rubrique-container {
-      flex-direction: column;
+        overflow: scroll;
+        width: 90vw;
+        height: 100%;
     }
-    .rubrique-left,
-    .rubrique-right{
+
+    .contact>.rubrique-container {
+        flex-direction: column;
+    }
+      
+    .rubrique-contact-left,
+    .rubrique-contact-right{
         width: 100%;
-        margin: 2%;
+        margin: auto;
     }
+
+    .rubrique-exitcross{
+        top: 0;
+        right: 2vw;
+    }
+
+    .rubrique-curvedline-container{
+        display: none;
+    }
+
+    /* about */
+
+    .about>.rubrique-container {
+        flex-direction: column-reverse;
+    }
+    
+    .about-portrait-container{
+        background: whitesmoke;
+        padding: 2vw;
+        height: 110vw;
+        width: 90vw;
+    }
+
+    .portrait{
+        width: 100%;
+        height: auto;
+    }
+
+    .portrait-name{
+        font-size: 3rem;
+    }
+
+    .rubrique-about-right{
+        width: 100%;
+    }
+
+    .rubrique-about-right p{
+        padding: 6px;
+    }
+
+    .about-social{
+        font-size: 2.5rem;
+    }
+
+    /* FOOTER */
+
+    /* PREVIOUS */
+
+    .previous{
+        width: 100%;
+      }
+
+    .previous{
+        bottom: 0;
+        left: 4vw;
+    }
+    
+    .previous-icon{
+        font-size: 2.5rem;
+    }
+
+  
+    /* BACKTOTOP */
+
+
+    .backToTop{
+        bottom: 0;
+        width: 100%;
+    }
+
+    .backToTop-icon{
+        font-size: 2.5rem;
+    }
+
+    /* SIGNATURE */
+  /* ---------------- A ENLEVER DISPLAY:NONE !!!!!!! ---------------- */
+    .link{
+        display: none;
+        position: relative;
+        right: 4vw;
+        bottom: 0;
+        width: auto;
+        grid-column: 3;
+        justify-content: flex-end;        
+    }
+    
+    .before, .after{
+        display: none
+    }
+    
+
 }
