@@ -530,8 +530,8 @@
 
     .titre{
         top: 50%;
-        transform: translateY(calc(48.5vw - 1rem));
-        font-size: 2rem;
+        transform: translateY(40vw);
+        font-size: 10vw;
         height: 2rem;
     }
 

@@ -54,7 +54,6 @@ class Carousel extends Component {
         rightCol : []
     }
 
-
     handleClickArrow = (value) => {
         const galerie = { ...this.state.galerie }
 
@@ -89,6 +88,8 @@ class Carousel extends Component {
             $('.show__container').style.overflowY = 'scroll'
             $('.navigation-left').style.transform = 'translateX(-75vh)'
             $('.navigation-right').style.transform = 'translateX(75vh)'
+            $('.navigation-chevrons-left').style.transform = 'translateX(-75vh)'
+            $('.navigation-chevrons-right').style.transform = 'translateX(75vh)'
 
             setTimeout(() =>{
                 this.setState({
@@ -97,9 +98,11 @@ class Carousel extends Component {
                     centerRank : '2',
                     middleCol : [...this.state.middleCol, <ShowPicture galerie = {galerie}  position = 'center' rank = '2' clicked = { () => this.handleClickPhoto(galerie, 2)}/>]
               })
-
                console.log('apparition sur les côtés')
+               this.handleScroll();
             }, 500);
+
+            
         }
         else{
             console.log('click, rank : ' + newRank)
@@ -165,19 +168,18 @@ class Carousel extends Component {
        console.log('scroll de handlescroll')
        if(galleryShown){
                //chargement des images au cours du défilement
-            const picturesFollowed = $$('img[data-follow = true]')
+           const picturesFollowed = $$('img[data-follow = true]')
            const galerie = this.state.galerie
            for(const followed of picturesFollowed){
                const bottomPos = followed.getBoundingClientRect().bottom - 50
-
-       
-                if (window.innerHeight >= bottomPos){
+               
+               if (window.innerHeight >= bottomPos){
                        
-                console.log('création')
-
+                    console.log('création')
+                
                     followed.dataset.follow = false
-                   const place = followed.dataset.column
-                   if(place === 'center'){
+                    const place = followed.dataset.column
+                    if(place === 'center'){
                        let rank = this.state.centerRank
                        rank++
                        if(rank >= galerie.img.length){rank = 0}
@@ -242,7 +244,9 @@ class Carousel extends Component {
         $('.show__container').style.overflowY = 'scroll'
         $('.navigation-left').style.transform = 'translateX(0)'
         $('.navigation-right').style.transform = 'translateX(0)'
-        
+        $('.navigation-chevrons-left').style.transform = 'translateX(0)'
+        $('.navigation-chevrons-right').style.transform = 'translateX(0)'
+
         this.setState({
                 leftCol : [],
                 rightCol : [],
@@ -332,7 +336,7 @@ class Carousel extends Component {
 
             const touches = e.changedTouches
             xEnd = touches[0].clientX
-            xDelta = xEnd - xStart
+            xDelta = xStart - xEnd
             const value = Math.sign(xDelta)
 
             if(Math.abs(xDelta) < 10){
@@ -353,9 +357,6 @@ class Carousel extends Component {
             galerie.img = galeries[idGalerie].img
             this.setState({ galerie })
             } 
-        }
-        else{
-            
         }
         
     }

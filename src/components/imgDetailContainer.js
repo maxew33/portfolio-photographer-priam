@@ -7,6 +7,10 @@ import ImgNavigationArrow from './imgNavigationArrow'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
+let xStart,
+xEnd,
+xDelta
+
 class ImgDetailContainer extends Component{ 
 
     state = {
@@ -30,6 +34,41 @@ class ImgDetailContainer extends Component{
         this.setState({ rank })
     }
 
+    handleTouchStart = (e) => {
+        e.preventDefault()
+        const touches = e.changedTouches
+        xStart = touches[0].clientX
+    }
+
+    handleTouchEnd = (e) => {
+
+        e.preventDefault()
+
+        const touches = e.changedTouches
+        xEnd = touches[0].clientX
+        xDelta = xStart - xEnd
+        const value = Math.sign(xDelta)
+
+        if(Math.abs(xDelta) > 10){
+
+            console.log('click')
+            console.log('value : ' + value)
+            console.log(this.props.galerie.img.length)
+
+            let rank = this.state.rank,
+                idRank = rank
+
+            idRank += value
+            if(idRank < 0){idRank = this.props.galerie.img.length - 1}
+            if(idRank === this.props.galerie.img.length){ idRank = 0 }
+                
+            rank = idRank
+            console.log('new rank : ' + rank)
+            this.setState({ rank })
+            } 
+            
+    }
+
     exit = () => {
         this.props.exit()
     }
@@ -48,7 +87,9 @@ class ImgDetailContainer extends Component{
 
                 <div className="image__detail-container">
 
-                    <div className="image__detail-img-container">
+                    <div className="image__detail-img-container"
+                        onTouchStart = { (e) => this.handleTouchStart(e)}
+                        onTouchEnd = { (e) => this.handleTouchEnd(e)}>
                         <ImgNavigationArrow 
                             direction='left' 
                             chgt = { () => this.handleClickArrow(-1)}/>
